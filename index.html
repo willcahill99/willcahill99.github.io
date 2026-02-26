@@ -9,9 +9,14 @@
 <style>
   :root {
     --cream: #F5F0E6;
-    --crimson: #A6192E;
-    --crimson-deep: #8B1425;
-    --crimson-bright: #C41E3A;
+    --sand: #C8B89A;
+    --sand-light: #D9CBAF;
+    --sand-dark: #A89878;
+    --slate-blue: #3B5468;
+    --steel-blue: #5A7D95;
+    --sky-blue: #7CA0B8;
+    --pale-blue: #A8C4D4;
+    --deep-blue: #1E3344;
     --charcoal: #1C1917;
     --dark: #0F0E0D;
     --mid-gray: #6B635A;
@@ -47,6 +52,45 @@
     background-repeat: no-repeat;
   }
   .bg-section + .bg-section { margin-top: calc(-1 * var(--section-overlap)); }
+
+  /* CSS gradient blending for JPG sections (no built-in transparency) */
+  #lead::after,
+  #about::after,
+  #work::after,
+  #experience::after,
+  #photos::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Bottom fade: dark sections fade to black, light sections fade to white */
+  #lead::after { background: linear-gradient(to bottom, transparent, var(--dark)); }
+  #about::after { background: linear-gradient(to bottom, transparent, var(--dark)); }
+  #work::after { background: linear-gradient(to bottom, transparent, white); }
+  #experience::after { background: linear-gradient(to bottom, transparent, white); }
+  #photos::after { background: linear-gradient(to bottom, transparent, white); }
+
+  /* Top fade for sections that need it */
+  #work::before,
+  #experience::before,
+  #photos::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  #work::before { background: linear-gradient(to top, transparent, var(--dark)); }
+  #experience::before { background: linear-gradient(to top, transparent, white); }
+  #photos::before { background: linear-gradient(to top, transparent, white); }
+
+  /* Ensure section content sits above gradient overlays */
+  #lead > *, #work > *, #experience > *, #photos > * { position: relative; z-index: 1; }
+
   #lead       { z-index: 6; }
   #about      { z-index: 5; }
   #work       { z-index: 4; }
@@ -70,7 +114,7 @@
     letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--cream); text-decoration: none;
   }
-  .nav-logo span { color: var(--crimson); }
+  .nav-logo span { color: var(--sky-blue); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em;
@@ -79,7 +123,7 @@
   }
   .nav-links a::after {
     content: ''; position: absolute; bottom: -4px; left: 0;
-    width: 0; height: 1.5px; background: var(--crimson); transition: width 0.3s ease;
+    width: 0; height: 1.5px; background: var(--sky-blue); transition: width 0.3s ease;
   }
   .nav-links a:hover { color: var(--cream); }
   .nav-links a:hover::after { width: 100%; }
@@ -90,31 +134,27 @@
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: 0.3s; }
 
   /* ── LEAD / HERO ── */
-  #lead { background-image: url('images/LeadPrep.png'); background-color: var(--dark); }
+  #lead { background-image: url('images/LeadPrepV2.jpg'); background-color: var(--dark); }
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
     justify-content: center; align-items: center; text-align: center;
-    padding: 8rem 2rem 6rem;
+    padding: 4rem 2rem 6rem;
   }
   .hero-inner { position: relative; z-index: 1; max-width: 920px; width: 100%; }
   .hero-name {
     font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem);
     font-weight: 400; line-height: 0.95; letter-spacing: -0.02em;
-    color: var(--cream); margin-bottom: 1.5rem; white-space: nowrap;
+    color: var(--cream); margin-bottom: 2.5rem; white-space: nowrap;
   }
-  .hero-name .last { color: var(--crimson); font-style: italic; }
-  .hero-rule { width: 60px; height: 2px; background: var(--crimson); margin: 0 auto 1.5rem; }
-  .hero-tagline {
-    font-size: 1.1rem; font-weight: 300; line-height: 1.7;
-    color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 3rem;
-  }
-  .hero-reel-row { display: flex; align-items: stretch; gap: 2rem; width: 100%; margin: 0 auto 3rem; }
+  .hero-name .last { color: var(--sky-blue); font-style: italic; }
+
+  .hero-reel-row { display: flex; align-items: stretch; gap: 2rem; width: 100%; margin: 0 auto 2rem; }
   .hero-reel { flex: 1; min-width: 0; }
   .reel-frame {
     background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9;
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden; cursor: pointer;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(166,25,46,0.2);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2);
   }
   .reel-frame::before {
     content: ''; position: absolute; inset: 0;
@@ -126,17 +166,14 @@
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     z-index: 2; transition: all 0.35s ease;
   }
-  .reel-frame:hover .reel-play { border-color: var(--crimson-bright); transform: scale(1.08); background: rgba(196,30,58,0.15); }
+  .reel-frame:hover .reel-play { border-color: var(--sky-blue); transform: scale(1.08); background: rgba(90,125,149,0.2); }
   .reel-play svg { width: 24px; height: 24px; fill: white; margin-left: 3px; }
   .embed-note {
     position: absolute; bottom: 0.75rem; right: 0.75rem;
     font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: rgba(255,255,255,0.3); z-index: 2;
   }
-  .reel-caption {
-    font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 1rem;
-  }
+
   .hero-links { display: flex; flex-direction: column; justify-content: center; gap: 0.65rem; flex-shrink: 0; width: 180px; }
   .hero-link {
     font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
@@ -145,59 +182,50 @@
     padding: 0.75rem 1.2rem; border: 1.5px solid rgba(255,255,255,0.3);
     transition: all 0.3s ease; white-space: nowrap;
   }
-  .hero-link:hover { background: var(--crimson); border-color: var(--crimson); }
+  .hero-link:hover { background: var(--slate-blue); border-color: var(--slate-blue); }
   .hero-link svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  .hero-tagline {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.7;
+    color: rgba(255,255,255,0.55); max-width: 600px; margin: 0 auto;
+    font-style: italic;
+  }
 
   /* ── SHARED ── */
   .section-pad-heavy { padding: 10rem 3rem; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
   .section-label {
     font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem;
+    text-transform: uppercase; color: var(--steel-blue); margin-bottom: 1rem;
     display: flex; align-items: center; gap: 0.75rem;
   }
-  .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--crimson); }
+  .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--steel-blue); }
   .section-title {
     font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem);
     font-weight: 400; line-height: 1.15; margin-bottom: 1rem;
   }
-  .section-title em { font-style: italic; color: var(--crimson); }
+  .section-title em { font-style: italic; color: var(--steel-blue); }
   .dark-section { color: var(--cream); }
-  .dark-section .section-label { color: var(--crimson-bright); }
+  .dark-section .section-label { color: var(--sky-blue); }
   .dark-section .section-title { color: var(--cream); }
-  .dark-section .section-title em { color: var(--crimson-bright); }
+  .dark-section .section-title em { color: var(--sky-blue); }
   .light-section { color: var(--charcoal); }
 
   /* ── ABOUT ── */
-  #about { background-image: url('images/AboutPrep.png'); background-color: var(--dark); }
-
-  /* Mobile dark overlay */
+  #about { background-image: url('images/AboutPrepV2.jpg'); background-color: var(--dark); }
   #about::before {
     content: ''; position: absolute; inset: 0;
     background: rgba(15,14,13,0.0); z-index: 0;
-    pointer-events: none; transition: background 0.3s;
+    pointer-events: none;
   }
-
   #about > * { position: relative; z-index: 1; }
 
-  .about-layout {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 2.5rem;
-  }
-
-  .about-content-right {
-    max-width: 520px;
-    width: 100%;
-  }
-
-  .about-text p {
-    font-size: 1.02rem; line-height: 1.8;
-    color: rgba(255,255,255,0.65); margin-bottom: 1.5rem;
-  }
+  .about-layout { display: flex; justify-content: flex-end; margin-top: 2.5rem; }
+  .about-content-right { max-width: 520px; width: 100%; }
+  .about-text p { font-size: 1.02rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
   .skills-heading {
     font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--crimson-bright); margin-bottom: 1.25rem;
+    text-transform: uppercase; color: var(--sky-blue); margin-bottom: 1.25rem;
     padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);
     margin-top: 1rem;
   }
@@ -208,25 +236,19 @@
     border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
     color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); transition: all 0.25s;
   }
-  .skill-tag:hover { border-color: var(--crimson); color: var(--cream); }
+  .skill-tag:hover { border-color: var(--sky-blue); color: var(--cream); }
   .education-block {
     padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.03); border-left: 3px solid var(--crimson);
+    background: rgba(255,255,255,0.03); border-left: 3px solid var(--steel-blue);
   }
   .edu-degree { font-family: var(--font-display); font-size: 1rem; margin-bottom: 0.25rem; color: var(--cream); }
   .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 0.15rem; }
   .edu-note { font-size: 0.85rem; color: rgba(255,255,255,0.35); font-style: italic; }
 
   /* ── WORK ── */
-  #work { background-image: url('images/PortfolioPrep.png'); background-color: white; }
+  #work { background-image: url('images/PortfolioPrepV2.jpg'); background-color: white; }
   .work-intro { font-size: 1.02rem; line-height: 1.75; color: var(--mid-gray); max-width: 560px; margin-bottom: 4rem; }
-
-  .project-grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-  }
-
+  .project-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .project-card { position: relative; }
   .project-video {
     aspect-ratio: 16/9; background: var(--dark); border-radius: 3px;
@@ -241,71 +263,68 @@
     z-index: 1; pointer-events: none;
   }
   .project-video .reel-play { width: 54px; height: 54px; opacity: 0.65; transition: all 0.3s; }
-  .project-card:hover .project-video .reel-play { opacity: 1; border-color: var(--crimson-bright); background: rgba(196,30,58,0.12); }
+  .project-card:hover .project-video .reel-play { opacity: 1; border-color: var(--sky-blue); background: rgba(90,125,149,0.15); }
   .project-video .reel-play svg { width: 18px; height: 18px; }
   .project-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.4rem; }
-  .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson); }
+  .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel-blue); }
   .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--light-gray); }
   .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--mid-gray); }
 
   /* ── EXPERIENCE ── */
-  #experience { background-image: url('images/ResumePrep.png'); background-color: white; }
+  #experience { background-image: url('images/ResumePrepV2.jpg'); background-color: white; }
   .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: rgba(166,25,46,0.25); }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--sand); }
   .timeline-item { padding-bottom: 2.75rem; position: relative; }
   .timeline-item:last-child { padding-bottom: 0; }
   .timeline-item::before {
     content: ''; position: absolute; left: -2rem; top: 6px;
-    width: 9px; height: 9px; background: var(--crimson); border-radius: 50%;
-    transform: translateX(-4px); box-shadow: 0 0 0 3px rgba(166,25,46,0.12);
+    width: 9px; height: 9px; background: var(--slate-blue); border-radius: 50%;
+    transform: translateX(-4px); box-shadow: 0 0 0 3px rgba(59,84,104,0.12);
   }
-  .timeline-year { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--crimson); margin-bottom: 0.4rem; }
+  .timeline-year { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--charcoal); margin-bottom: 0.4rem; }
   .timeline-role { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.2rem; }
-  .timeline-company { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--mid-gray); margin-bottom: 0.65rem; }
-  .timeline-desc { font-size: 0.88rem; line-height: 1.7; color: var(--light-gray); max-width: 520px; }
+  .timeline-company { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--charcoal); margin-bottom: 0.65rem; }
+  .timeline-desc { font-size: 0.88rem; line-height: 1.7; color: var(--charcoal); max-width: 520px; }
 
   /* ── PHOTOS ── */
-  #photos { background-image: url('images/PhotosPrep.png'); background-color: white; background-position: center; }
+  #photos { background-image: url('images/PhotosPrepV2.jpg'); background-color: white; background-position: center; }
+
+  .gallery-segment { margin-bottom: 4rem; }
+  .gallery-segment:last-child { margin-bottom: 0; }
+
+  .gallery-segment-label {
+    font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--slate-blue);
+    margin-bottom: 1rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(59,84,104,0.15);
+  }
 
   .gallery-viewer {
     display: flex;
     gap: 1rem;
-    margin-top: 2.5rem;
     height: 520px;
   }
 
   .gallery-thumbs {
-    width: 120px;
-    flex-shrink: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    width: 120px; flex-shrink: 0;
+    overflow-y: auto; overflow-x: hidden;
+    display: flex; flex-direction: column; gap: 0.5rem;
     padding-right: 0.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--chrome) transparent;
+    scrollbar-width: thin; scrollbar-color: var(--chrome) transparent;
   }
   .gallery-thumbs::-webkit-scrollbar { width: 4px; }
   .gallery-thumbs::-webkit-scrollbar-track { background: transparent; }
   .gallery-thumbs::-webkit-scrollbar-thumb { background: var(--chrome); border-radius: 2px; }
 
   .gallery-thumb {
-    width: 100%;
-    aspect-ratio: 1;
-    flex-shrink: 0;
-    background: rgba(0,0,0,0.06);
-    border-radius: 3px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
+    width: 100%; aspect-ratio: 1; flex-shrink: 0;
+    background: rgba(0,0,0,0.06); border-radius: 3px;
+    cursor: pointer; border: 2px solid transparent;
+    transition: all 0.25s ease; position: relative; overflow: hidden;
   }
   .gallery-thumb:hover { border-color: var(--chrome); }
-  .gallery-thumb.active { border-color: var(--crimson); }
-
+  .gallery-thumb.active { border-color: var(--slate-blue); }
   .gallery-thumb-placeholder {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
@@ -314,16 +333,10 @@
   }
 
   .gallery-main {
-    flex: 1;
-    background: rgba(0,0,0,0.04);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 1; background: rgba(0,0,0,0.04); border-radius: 4px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
   }
-
   .gallery-main-placeholder {
     display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 0.6rem;
@@ -335,42 +348,45 @@
   }
 
   /* ── CONTACT ── */
-  #contact { background-image: url('images/ContactPrep.png'); background-color: var(--dark); background-position: center; }
+  #contact {
+    background-image: url('images/ContactPrepV2.png');
+    background-color: white;
+    background-position: center;
+    background-size: cover;
+  }
 
-  .contact-centered {
+  .contact-full {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
+    padding: 10rem 3rem;
+  }
+
+  .contact-centered {
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    max-width: 500px; width: 100%;
   }
 
   .contact-headline {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
+    font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem);
+    font-weight: 400; line-height: 1.2; color: var(--charcoal); margin-bottom: 0.5rem;
   }
-  .contact-headline em { font-style: italic; color: var(--crimson-bright); }
+  .contact-headline em { font-style: italic; color: var(--steel-blue); }
 
   .contact-links-center {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
-    margin-top: 2.5rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    width: 100%; margin-top: 2.5rem;
   }
-
   .contact-link {
     font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
-    color: var(--cream); text-decoration: none; display: flex; align-items: center;
+    color: var(--charcoal); text-decoration: none; display: flex; align-items: center;
     justify-content: center; gap: 0.75rem;
-    padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
+    padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); transition: all 0.3s;
   }
-  .contact-link:hover { color: var(--crimson-bright); }
+  .contact-link:hover { color: var(--steel-blue); }
   .contact-link svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
 
   /* ── FOOTER ── */
@@ -381,7 +397,7 @@
     font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
   }
   footer a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.3s; }
-  footer a:hover { color: var(--crimson-bright); }
+  footer a:hover { color: var(--sky-blue); }
   .footer-links { display: flex; gap: 2rem; }
 
   /* ── ANIMATIONS ── */
@@ -397,12 +413,11 @@
     :root { --section-overlap: 100px; }
     nav { padding: 1rem 2rem; }
     .section-pad-heavy { padding: 8rem 2rem; }
-    .hero { padding: 7rem 2rem 5rem; }
+    .hero { padding: 4rem 2rem 5rem; }
     .project-grid-2col { grid-template-columns: 1fr 1fr; }
     .gallery-viewer { height: 420px; }
     .gallery-thumbs { width: 100px; }
   }
-
   @media (max-width: 768px) {
     :root { --section-overlap: 60px; }
     nav { padding: 1rem 1.5rem; }
@@ -414,21 +429,15 @@
     }
     .hamburger { display: flex; }
     .section-pad-heavy { padding: 7rem 1.5rem; }
-    .hero { padding: 6rem 1.5rem 4rem; }
+    .hero { padding: 4rem 1.5rem 4rem; }
     .hero-name { white-space: normal; }
     .hero-reel-row { flex-direction: column; }
     .hero-links { flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; }
     .hero-link { padding: 0.7rem 1rem; font-size: 0.6rem; }
-
-    /* About: full width text + dark overlay */
     #about::before { background: rgba(15,14,13,0.6); }
     .about-layout { justify-content: stretch; }
     .about-content-right { max-width: 100%; }
-
-    /* Portfolio: single column */
     .project-grid-2col { grid-template-columns: 1fr; }
-
-    /* Gallery: stack vertically */
     .gallery-viewer { flex-direction: column; height: auto; }
     .gallery-thumbs {
       width: 100%; flex-direction: row; overflow-x: auto; overflow-y: hidden;
@@ -436,7 +445,7 @@
     }
     .gallery-thumb { width: 70px; aspect-ratio: 1; flex-shrink: 0; }
     .gallery-main { min-height: 280px; }
-
+    .contact-full { min-height: 100vh; padding: 7rem 1.5rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
 </style>
@@ -461,15 +470,13 @@
   <section class="hero">
     <div class="hero-inner">
       <h1 class="hero-name fade-up">Will <span class="last">Cahill</span></h1>
-      <div class="hero-rule fade-up stagger-1"></div>
-      <p class="hero-tagline fade-up stagger-2">Editor, videographer, and producer with a sharp eye for narrative and a passion for post-production.</p>
-      <div class="hero-reel-row fade-up stagger-3">
+
+      <div class="hero-reel-row fade-up stagger-1">
         <div class="hero-reel">
           <div class="reel-frame">
             <div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             <span class="embed-note">Embed demo reel here</span>
           </div>
-          <div class="reel-caption">Demo Reel — 2025</div>
         </div>
         <div class="hero-links">
           <a href="#work" class="hero-link"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" stroke="currentColor" fill="none"/></svg>View Work</a>
@@ -478,6 +485,8 @@
           <a href="https://instagram.com/willcahill" target="_blank" class="hero-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
         </div>
       </div>
+
+      <p class="hero-tagline fade-up stagger-2">Editor, videographer, and producer with a sharp eye for narrative and a passion for post-production.</p>
     </div>
   </section>
 </div>
@@ -525,9 +534,7 @@
   <div class="section-pad-heavy">
     <div class="section-inner">
       <span class="section-label fade-up">Selected Work</span>
-      <h2 class="section-title fade-up stagger-1">Recent <em>projects</em></h2>
-      <p class="work-intro fade-up stagger-2">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
-
+      <p class="work-intro fade-up stagger-1">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
       <div class="project-grid-2col fade-up stagger-3">
         <div class="project-card">
           <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
@@ -569,7 +576,6 @@
   <div class="section-pad-heavy">
     <div class="section-inner">
       <span class="section-label fade-up">Experience</span>
-      <h2 class="section-title fade-up stagger-1">Where I've <em>worked</em></h2>
       <div class="timeline">
         <div class="timeline-item fade-up"><div class="timeline-year">2024 — Present</div><div class="timeline-role">Freelance Editor</div><div class="timeline-company">Self-Employed · Los Angeles</div><div class="timeline-desc">Edit interview-style podcasts, create graphics and color grade web series, edit music videos, and independently produce short films.</div></div>
         <div class="timeline-item fade-up"><div class="timeline-year">2022 — Present</div><div class="timeline-role">Production Specialist</div><div class="timeline-company">X-15 Industries</div><div class="timeline-desc">Quality control and final delivery of digital, broadcast, and social spots. Shoot and edit promotional BTS videos. Create video material for social media and pitch decks.</div></div>
@@ -582,53 +588,87 @@
   </div>
 </div>
 
-<!-- PHOTOS (z-index 1, below Contact) -->
+<!-- PHOTOS (z-index 1) -->
 <div id="photos" class="bg-section light-section">
   <div class="section-pad-heavy">
     <div class="section-inner">
       <span class="section-label fade-up">Photography</span>
-      <h2 class="section-title fade-up stagger-1">A visual <em>diary</em></h2>
 
-      <div class="gallery-viewer fade-up stagger-2">
-        <div class="gallery-thumbs" id="galleryThumbs">
-          <div class="gallery-thumb active" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-          <div class="gallery-thumb" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-          <div class="gallery-thumb" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-          <div class="gallery-thumb" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-          <div class="gallery-thumb" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-          <div class="gallery-thumb" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-          <div class="gallery-thumb" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-          <div class="gallery-thumb" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
-          <div class="gallery-thumb" data-index="8"><div class="gallery-thumb-placeholder">09</div></div>
-          <div class="gallery-thumb" data-index="9"><div class="gallery-thumb-placeholder">10</div></div>
-          <div class="gallery-thumb" data-index="10"><div class="gallery-thumb-placeholder">11</div></div>
-          <div class="gallery-thumb" data-index="11"><div class="gallery-thumb-placeholder">12</div></div>
-        </div>
-        <div class="gallery-main" id="galleryMain">
-          <div class="gallery-main-placeholder">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            Select a photo
+      <!-- Gallery 1 -->
+      <div class="gallery-segment fade-up stagger-2">
+        <div class="gallery-segment-label">On Set &amp; BTS</div>
+        <div class="gallery-viewer">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-gallery="1" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+          </div>
+          <div class="gallery-main">
+            <div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div>
           </div>
         </div>
       </div>
+
+      <!-- Gallery 2 -->
+      <div class="gallery-segment fade-up">
+        <div class="gallery-segment-label">Live Performance</div>
+        <div class="gallery-viewer">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-gallery="2" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+          </div>
+          <div class="gallery-main">
+            <div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery 3 -->
+      <div class="gallery-segment fade-up">
+        <div class="gallery-segment-label">What I Like to Do</div>
+        <div class="gallery-viewer">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-gallery="3" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+          </div>
+          <div class="gallery-main">
+            <div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
 <!-- CONTACT (z-index 2, above Photos) -->
-<div id="contact" class="bg-section dark-section">
-  <div class="section-pad-heavy">
-    <div class="section-inner">
-      <div class="contact-centered fade-up">
-        <h2 class="contact-headline">Looking to work together?<br><em>Let's talk!</em></h2>
-
-        <div class="contact-links-center">
-          <a href="mailto:willcahill99@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>willcahill99@gmail.com</a>
-          <a href="tel:9737657064" class="contact-link"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>(973) 765-7064</a>
-          <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
-          <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          <a href="https://instagram.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
-        </div>
+<div id="contact" class="bg-section light-section">
+  <div class="contact-full">
+    <div class="contact-centered fade-up">
+      <h2 class="contact-headline">Looking to work together?<br><em>Let's talk!</em></h2>
+      <div class="contact-links-center">
+        <a href="mailto:willcahill99@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>willcahill99@gmail.com</a>
+        <a href="tel:9737657064" class="contact-link"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>(973) 765-7064</a>
+        <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
+        <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        <a href="https://instagram.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
       </div>
     </div>
   </div>
@@ -664,33 +704,32 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   fadeEls.forEach(el => observer.observe(el));
 
-  // Gallery viewer
-  const thumbs = document.querySelectorAll('.gallery-thumb');
-  const mainArea = document.getElementById('galleryMain');
+  // Gallery viewers — each gallery is independent
+  document.querySelectorAll('.gallery-viewer').forEach(viewer => {
+    const thumbs = viewer.querySelectorAll('.gallery-thumb');
+    const mainArea = viewer.querySelector('.gallery-main');
 
-  thumbs.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      // Update active state
-      thumbs.forEach(t => t.classList.remove('active'));
-      thumb.classList.add('active');
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        // Update active within this gallery only
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
 
-      const idx = thumb.getAttribute('data-index');
+        const idx = thumb.getAttribute('data-index');
+        const thumbStyle = window.getComputedStyle(thumb);
+        const bgImage = thumbStyle.backgroundImage;
 
-      // If the thumb has a background-image (real photo), show it in main
-      const thumbStyle = window.getComputedStyle(thumb);
-      const bgImage = thumbStyle.backgroundImage;
-
-      if (bgImage && bgImage !== 'none') {
-        mainArea.style.backgroundImage = bgImage;
-        mainArea.style.backgroundSize = 'contain';
-        mainArea.style.backgroundPosition = 'center';
-        mainArea.style.backgroundRepeat = 'no-repeat';
-        mainArea.innerHTML = '';
-      } else {
-        // Placeholder mode
-        mainArea.style.backgroundImage = 'none';
-        mainArea.innerHTML = '<div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Photo ' + (parseInt(idx) + 1) + '</div>';
-      }
+        if (bgImage && bgImage !== 'none') {
+          mainArea.style.backgroundImage = bgImage;
+          mainArea.style.backgroundSize = 'contain';
+          mainArea.style.backgroundPosition = 'center';
+          mainArea.style.backgroundRepeat = 'no-repeat';
+          mainArea.innerHTML = '';
+        } else {
+          mainArea.style.backgroundImage = 'none';
+          mainArea.innerHTML = '<div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Photo ' + (parseInt(idx) + 1) + '</div>';
+        }
+      });
     });
   });
 </script>
