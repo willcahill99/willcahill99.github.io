@@ -47,15 +47,22 @@
   /* ── BG SECTION SYSTEM ── */
   .bg-section {
     position: relative;
-    background-size: cover;
+    background-size: 100% auto;
     background-position: center top;
     background-repeat: no-repeat;
   }
   .bg-section + .bg-section { margin-top: calc(-1 * var(--section-overlap)); }
 
-  /* CSS gradient blending for JPG sections (no built-in transparency) */
-  #lead::after,
-  #about::after,
+  /* Full image height: use aspect ratio to ensure entire image is visible.
+     Each section's min-height = (img_height / img_width) * 100vw */
+  #lead       { min-height: calc(1506 / 2000 * 100vw); }  /* 2000x1506 */
+  #about      { min-height: calc(1506 / 2000 * 100vw); }  /* 2000x1506 */
+  #work       { min-height: calc(2000 / 1475 * 100vw); }  /* 1475x2000 */
+  #experience { min-height: calc(1866 / 2000 * 100vw); }  /* 2000x1866 */
+  #photos     { min-height: calc(2000 / 1281 * 100vw); }  /* 1281x2000 */
+  #contact    { min-height: calc(2000 / 1410 * 100vw); }  /* 1410x2000 */
+
+  /* CSS gradient blending for JPG sections — bottom fade */
   #work::after,
   #experience::after,
   #photos::after {
@@ -66,14 +73,11 @@
     pointer-events: none;
     z-index: 0;
   }
-  /* Bottom fade: dark sections fade to black, light sections fade to white */
-  #lead::after { background: linear-gradient(to bottom, transparent, var(--dark)); }
-  #about::after { background: linear-gradient(to bottom, transparent, var(--dark)); }
   #work::after { background: linear-gradient(to bottom, transparent, white); }
   #experience::after { background: linear-gradient(to bottom, transparent, white); }
   #photos::after { background: linear-gradient(to bottom, transparent, white); }
 
-  /* Top fade for sections that need it */
+  /* Top fade for light sections coming after dark */
   #work::before,
   #experience::before,
   #photos::before {
@@ -91,6 +95,7 @@
   /* Ensure section content sits above gradient overlays */
   #lead > *, #work > *, #experience > *, #photos > * { position: relative; z-index: 1; }
 
+  /* Z-index stacking: Lead in FRONT of About, no blending between them */
   #lead       { z-index: 6; }
   #about      { z-index: 5; }
   #work       { z-index: 4; }
@@ -290,13 +295,13 @@
   /* ── PHOTOS ── */
   #photos { background-image: url('images/PhotosPrepV2.jpg'); background-color: white; background-position: center; }
 
-  .gallery-segment { margin-bottom: 4rem; }
+  .gallery-segment { margin-bottom: 6rem; }
   .gallery-segment:last-child { margin-bottom: 0; }
 
   .gallery-segment-label {
-    font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--slate-blue);
-    margin-bottom: 1rem; padding-bottom: 0.5rem;
+    font-family: var(--font-display); font-size: 1.5rem;
+    font-weight: 400; color: var(--charcoal);
+    margin-bottom: 1.5rem; padding-bottom: 0.75rem;
     border-bottom: 1px solid rgba(59,84,104,0.15);
   }
 
@@ -351,8 +356,9 @@
   #contact {
     background-image: url('images/ContactPrepV2.png');
     background-color: white;
-    background-position: center;
-    background-size: cover;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
   }
 
   .contact-full {
