@@ -42,43 +42,15 @@
     background-size: 200px;
   }
 
-  /* ══════════════════════════════════
-     STANDARD SCROLL SECTIONS
-     Background-image approach, scrolls normally
-     ══════════════════════════════════ */
-  .standard-section {
+  /* ── SECTIONS ── */
+  .section {
     position: relative;
-    background-size: 100% auto;
-    background-position: center top;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
   }
-
-  /* ══════════════════════════════════
-     STICKY SCROLL SECTIONS
-     Image scrolls up, sticks at top, content scrolls over,
-     then image continues scrolling to reveal its full height.
-     ══════════════════════════════════ */
-  .sticky-section {
-    position: relative;
-    overflow: hidden;
-  }
-  .sticky-bg {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 0;
-  }
-  .sticky-bg img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  .sticky-content {
-    position: relative;
-    z-index: 1;
-    /* Pull content up over the sticky image */
-    margin-top: -100vh;
-  }
+  .section > * { position: relative; z-index: 1; }
+  .section.fixed-bg { background-attachment: fixed; }
 
   /* ── NAV ── */
   nav {
@@ -115,10 +87,11 @@
   }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: 0.3s; }
 
-  /* ── LEAD (Standard) ── */
+  /* ── LEAD ── */
   #lead {
     background-image: url('images/LeadPrepV3.jpg');
     background-color: var(--dark);
+    background-size: cover;
     min-height: 100vh;
   }
   .hero {
@@ -126,7 +99,7 @@
     justify-content: center; align-items: center; text-align: center;
     padding: 4rem 2rem 6rem;
   }
-  .hero-inner { position: relative; z-index: 1; max-width: 920px; width: 100%; }
+  .hero-inner { max-width: 920px; width: 100%; }
   .hero-name {
     font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem);
     font-weight: 400; line-height: 0.95; letter-spacing: -0.02em;
@@ -193,7 +166,7 @@
   .dark-text .section-title { color: var(--cream); }
   .dark-text .section-title em { color: var(--sky-blue); }
 
-  /* ── ABOUT (Standard) ── */
+  /* ── ABOUT ── */
   #about {
     background-image: url('images/AboutPrepV3.jpg');
     background-color: var(--dark);
@@ -204,7 +177,6 @@
     background: rgba(15,14,13,0.0); z-index: 0;
     pointer-events: none;
   }
-  #about > * { position: relative; z-index: 1; }
   .about-layout { display: flex; justify-content: flex-end; margin-top: 2.5rem; }
   .about-content-right { max-width: 620px; width: 100%; }
   .about-text p { font-size: 1.02rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
@@ -230,7 +202,13 @@
   .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 0.15rem; }
   .edu-note { font-size: 0.85rem; color: rgba(255,255,255,0.35); font-style: italic; }
 
-  /* ── WORK (Sticky) ── */
+  /* ── WORK (Fixed BG) ── */
+  #work {
+    background-image: url('images/PortfolioPrepV2.jpg');
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+  }
   .work-intro { font-size: 1.02rem; line-height: 1.75; color: var(--mid-gray); margin-bottom: 4rem; }
   .project-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .project-card { position: relative; }
@@ -255,7 +233,13 @@
   .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--mid-gray); }
 
-  /* ── EXPERIENCE (Sticky) ── */
+  /* ── EXPERIENCE (Fixed BG) ── */
+  #experience {
+    background-image: url('images/ResumePrepV3.jpg');
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+  }
   .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--sand); }
   .timeline-item { padding-bottom: 2.75rem; position: relative; }
@@ -270,7 +254,15 @@
   .timeline-company { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--charcoal); margin-bottom: 0.65rem; }
   .timeline-desc { font-size: 0.88rem; line-height: 1.7; color: var(--charcoal); max-width: 520px; }
 
-  /* ── PHOTOS (Sticky) ── */
+  /* ── PHOTOS (Fixed BG) ── */
+  #photos {
+    background-image: url('images/PhotosPrepV3.jpg');
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    position: relative;
+  }
   .gallery-segment { margin-bottom: 6rem; }
   .gallery-segment:last-child { margin-bottom: 0; }
   .gallery-segment-label {
@@ -319,18 +311,17 @@
     width: 36px; height: 36px; stroke: var(--chrome); fill: none; stroke-width: 1.2;
   }
 
-  /* ── CONTACT (Standard) ── */
+  /* ── CONTACT ── */
   #contact {
     background-image: url('images/ContactPrepV2.png');
     background-color: transparent;
-    background-position: center top;
     background-size: 100% auto;
+    background-position: center top;
     background-repeat: no-repeat;
     min-height: calc(2000 / 1410 * 100vw);
     z-index: 2;
+    position: relative;
   }
-  #photos-wrapper { z-index: 1; position: relative; }
-
   .contact-full {
     min-height: 100vh;
     display: flex; flex-direction: column;
@@ -387,11 +378,11 @@
     nav { padding: 1rem 2rem; }
     .section-pad-heavy { padding: 8rem 2rem; }
     .hero { padding: 4rem 2rem 5rem; }
-    .project-grid-2col { grid-template-columns: 1fr 1fr; }
     .gallery-viewer { height: 420px; }
     .gallery-thumbs { width: 100px; }
   }
   @media (max-width: 768px) {
+    .section.fixed-bg { background-attachment: scroll; }
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     .nav-links.open {
@@ -425,7 +416,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">W<span>.</span>C</a>
   <ul class="nav-links" id="navLinks">
@@ -438,8 +428,8 @@
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ════════ LEAD (Standard scroll) ════════ -->
-<div id="lead" class="standard-section">
+<!-- LEAD -->
+<div id="lead" class="section">
   <section class="hero">
     <div class="hero-inner">
       <h1 class="hero-name fade-up">Will <span class="last">Cahill</span></h1>
@@ -462,8 +452,8 @@
   </section>
 </div>
 
-<!-- ════════ ABOUT (Standard scroll) ════════ -->
-<div id="about" class="standard-section dark-text">
+<!-- ABOUT -->
+<div id="about" class="section dark-text">
   <div class="section-pad-heavy">
     <div class="section-inner">
       <div style="display:flex; justify-content:flex-end;">
@@ -475,7 +465,7 @@
       <div class="about-layout">
         <div class="about-content-right">
           <div class="about-text fade-up stagger-2">
-            <p>I'm a producer and editor based in Los Angeles with a dual B.S. in Television Radio Film and Information Management &amp; Technology from Syracuse University's Renée Crown Honors Program. That blend of creative storytelling and technical precision shapes everything I do in the edit.</p>
+            <p>I'm a producer and editor based in Los Angeles with a dual B.S. in Television Radio Film and Information Management &amp; Technology from Syracuse University's Renee Crown Honors Program. That blend of creative storytelling and technical precision shapes everything I do in the edit.</p>
             <p>Currently a Production Specialist at X-15 Industries, I oversee quality control and final delivery of digital, broadcast, and social spots while collaborating across production and editorial teams. On the freelance side, I edit podcasts, color grade music videos, and independently produce short films — always looking for the next compelling story to tell.</p>
             <p>When I'm not cutting, you'll find me behind a camera. Photography keeps my visual eye sharp and feeds back into my editorial work — how I frame, pace, and feel a story.</p>
           </div>
@@ -490,8 +480,8 @@
             <div class="education-block">
               <div class="edu-degree">B.S. Television Radio Film</div>
               <div class="edu-degree">B.S. Information Management &amp; Technology</div>
-              <div class="edu-school">Syracuse University · 2018–2022</div>
-              <div class="edu-note">Renée Crown Honors Program</div>
+              <div class="edu-school">Syracuse University · 2018-2022</div>
+              <div class="edu-note">Renee Crown Honors Program</div>
             </div>
           </div>
         </div>
@@ -500,145 +490,124 @@
   </div>
 </div>
 
-<!-- ════════ WORK / PORTFOLIO (Sticky scroll) ════════ -->
-<div id="work" class="sticky-section">
-  <div class="sticky-bg">
-    <img src="images/PortfolioPrepV2.jpg" alt="" />
-  </div>
-  <div class="sticky-content">
-    <div class="section-pad-heavy">
-      <div class="section-inner">
-        <span class="section-label fade-up">Selected Work</span>
-        <p class="work-intro fade-up stagger-1">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
-        <div class="project-grid-2col fade-up stagger-2">
-          <div class="project-card">
-            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Short Film</span><span class="project-year">2022</span></div>
-            <h3 class="project-title">The Seduction of a Modern Woman</h3>
-            <p class="project-desc">Editor and 1st AD. Managed a 15-person crew across 4 shoot days. First assembly through final cut including audio, color, and VFX.</p>
-          </div>
-          <div class="project-card">
-            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Podcast</span><span class="project-year">2024</span></div>
-            <h3 class="project-title">Loving Is…</h3>
-            <p class="project-desc">Interview-style spirituality podcast. Full editorial, graphics, and color grading.</p>
-          </div>
-          <div class="project-card">
-            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Web Series</span><span class="project-year">2024</span></div>
-            <h3 class="project-title">The Question Project</h3>
-            <p class="project-desc">Educational web series. Created graphics and full color grade.</p>
-          </div>
-          <div class="project-card">
-            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Music Video</span><span class="project-year">2024</span></div>
-            <h3 class="project-title">Music Video — Title Here</h3>
-            <p class="project-desc">Full edit and color grade.</p>
-          </div>
-          <div class="project-card">
-            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Commercial</span><span class="project-year">2023</span></div>
-            <h3 class="project-title">Commercial Spot — Client Name</h3>
-            <p class="project-desc">Promotional BTS and social content for client marketing campaigns at X-15 Industries.</p>
-          </div>
+<!-- WORK (Fixed BG) -->
+<div id="work" class="section fixed-bg">
+  <div class="section-pad-heavy">
+    <div class="section-inner">
+      <span class="section-label fade-up">Selected Work</span>
+      <p class="work-intro fade-up stagger-1">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
+      <div class="project-grid-2col fade-up stagger-2">
+        <div class="project-card">
+          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+          <div class="project-meta"><span class="project-type">Short Film</span><span class="project-year">2022</span></div>
+          <h3 class="project-title">The Seduction of a Modern Woman</h3>
+          <p class="project-desc">Editor and 1st AD. Managed a 15-person crew across 4 shoot days. First assembly through final cut including audio, color, and VFX.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+          <div class="project-meta"><span class="project-type">Podcast</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Loving Is...</h3>
+          <p class="project-desc">Interview-style spirituality podcast. Full editorial, graphics, and color grading.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+          <div class="project-meta"><span class="project-type">Web Series</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">The Question Project</h3>
+          <p class="project-desc">Educational web series. Created graphics and full color grade.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+          <div class="project-meta"><span class="project-type">Music Video</span><span class="project-year">2024</span></div>
+          <h3 class="project-title">Music Video — Title Here</h3>
+          <p class="project-desc">Full edit and color grade.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+          <div class="project-meta"><span class="project-type">Commercial</span><span class="project-year">2023</span></div>
+          <h3 class="project-title">Commercial Spot — Client Name</h3>
+          <p class="project-desc">Promotional BTS and social content for client marketing campaigns at X-15 Industries.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════ EXPERIENCE / RESUME (Sticky scroll) ════════ -->
-<div id="experience" class="sticky-section">
-  <div class="sticky-bg">
-    <img src="images/ResumePrepV3.jpg" alt="" />
+<!-- EXPERIENCE (Fixed BG) -->
+<div id="experience" class="section fixed-bg">
+  <div class="section-pad-heavy">
+    <div class="section-inner">
+      <span class="section-label fade-up">Experience</span>
+      <div class="timeline">
+        <div class="timeline-item fade-up"><div class="timeline-year">2024 — Present</div><div class="timeline-role">Freelance Editor</div><div class="timeline-company">Self-Employed · Los Angeles</div><div class="timeline-desc">Edit interview-style podcasts, create graphics and color grade web series, edit music videos, and independently produce short films.</div></div>
+        <div class="timeline-item fade-up"><div class="timeline-year">2022 — Present</div><div class="timeline-role">Production Specialist</div><div class="timeline-company">X-15 Industries</div><div class="timeline-desc">Quality control and final delivery of digital, broadcast, and social spots. Shoot and edit promotional BTS videos. Create video material for social media and pitch decks.</div></div>
+        <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Editor / 1st AD</div><div class="timeline-company">The Seduction of a Modern Woman</div><div class="timeline-desc">Created shot lists and schedules, managed 15-person crew. Edited first assembly through final cut including audio, color, and VFX.</div></div>
+        <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Production Assistant</div><div class="timeline-company">Entertainment Studios</div><div class="timeline-desc">Maintained soundstages, production offices, and trailers. Transferred camera files to post production on shoot days.</div></div>
+        <div class="timeline-item fade-up"><div class="timeline-year">2021</div><div class="timeline-role">Editing Intern</div><div class="timeline-company">Link Entertainment</div><div class="timeline-desc">Compiled and edited reels for current and prospective clients. Managed client social media posts.</div></div>
+        <div class="timeline-item fade-up"><div class="timeline-year">2018 — 2022</div><div class="timeline-role">Head of Content Creation</div><div class="timeline-company">Orange Television Network: Live from Studio B · Syracuse University</div><div class="timeline-desc">Led weekly production meetings. Oversaw development, production, and delivery of sketches for bi-weekly live shows. Trained new members on equipment and processes.</div></div>
+      </div>
+    </div>
   </div>
-  <div class="sticky-content">
-    <div class="section-pad-heavy">
-      <div class="section-inner">
-        <span class="section-label fade-up">Experience</span>
-        <div class="timeline">
-          <div class="timeline-item fade-up"><div class="timeline-year">2024 — Present</div><div class="timeline-role">Freelance Editor</div><div class="timeline-company">Self-Employed · Los Angeles</div><div class="timeline-desc">Edit interview-style podcasts, create graphics and color grade web series, edit music videos, and independently produce short films.</div></div>
-          <div class="timeline-item fade-up"><div class="timeline-year">2022 — Present</div><div class="timeline-role">Production Specialist</div><div class="timeline-company">X-15 Industries</div><div class="timeline-desc">Quality control and final delivery of digital, broadcast, and social spots. Shoot and edit promotional BTS videos. Create video material for social media and pitch decks.</div></div>
-          <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Editor / 1st AD</div><div class="timeline-company">The Seduction of a Modern Woman</div><div class="timeline-desc">Created shot lists and schedules, managed 15-person crew. Edited first assembly through final cut including audio, color, and VFX.</div></div>
-          <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Production Assistant</div><div class="timeline-company">Entertainment Studios</div><div class="timeline-desc">Maintained soundstages, production offices, and trailers. Transferred camera files to post production on shoot days.</div></div>
-          <div class="timeline-item fade-up"><div class="timeline-year">2021</div><div class="timeline-role">Editing Intern</div><div class="timeline-company">Link Entertainment</div><div class="timeline-desc">Compiled and edited reels for current and prospective clients. Managed client social media posts.</div></div>
-          <div class="timeline-item fade-up"><div class="timeline-year">2018 — 2022</div><div class="timeline-role">Head of Content Creation</div><div class="timeline-company">Orange Television Network: Live from Studio B · Syracuse University</div><div class="timeline-desc">Led weekly production meetings. Oversaw development, production, and delivery of sketches for bi-weekly live shows. Trained new members on equipment and processes.</div></div>
+</div>
+
+<!-- PHOTOS (Fixed BG) -->
+<div id="photos" class="section fixed-bg">
+  <div class="section-pad-heavy">
+    <div class="section-inner">
+      <span class="section-label fade-up">Photography</span>
+      <div class="gallery-segment fade-up stagger-1">
+        <div class="gallery-segment-label">On Set &amp; BTS</div>
+        <div class="gallery-viewer">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-gallery="1" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+            <div class="gallery-thumb" data-gallery="1" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+          </div>
+          <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
+        </div>
+      </div>
+      <div class="gallery-segment fade-up">
+        <div class="gallery-segment-label">Live Performance</div>
+        <div class="gallery-viewer">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-gallery="2" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+            <div class="gallery-thumb" data-gallery="2" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+          </div>
+          <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
+        </div>
+      </div>
+      <div class="gallery-segment fade-up">
+        <div class="gallery-segment-label">What I Like to Do</div>
+        <div class="gallery-viewer">
+          <div class="gallery-thumbs">
+            <div class="gallery-thumb active" data-gallery="3" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+            <div class="gallery-thumb" data-gallery="3" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+          </div>
+          <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════ PHOTOS (Sticky scroll) ════════ -->
-<div id="photos-wrapper" class="sticky-section">
-  <div class="sticky-bg">
-    <img src="images/PhotosPrepV3.jpg" alt="" />
-  </div>
-  <div class="sticky-content" id="photos">
-    <div class="section-pad-heavy">
-      <div class="section-inner">
-        <span class="section-label fade-up">Photography</span>
-
-        <!-- Gallery 1 -->
-        <div class="gallery-segment fade-up stagger-1">
-          <div class="gallery-segment-label">On Set &amp; BTS</div>
-          <div class="gallery-viewer">
-            <div class="gallery-thumbs">
-              <div class="gallery-thumb active" data-gallery="1" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
-            </div>
-            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
-          </div>
-        </div>
-
-        <!-- Gallery 2 -->
-        <div class="gallery-segment fade-up">
-          <div class="gallery-segment-label">Live Performance</div>
-          <div class="gallery-viewer">
-            <div class="gallery-thumbs">
-              <div class="gallery-thumb active" data-gallery="2" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
-            </div>
-            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
-          </div>
-        </div>
-
-        <!-- Gallery 3 -->
-        <div class="gallery-segment fade-up">
-          <div class="gallery-segment-label">What I Like to Do</div>
-          <div class="gallery-viewer">
-            <div class="gallery-thumbs">
-              <div class="gallery-thumb active" data-gallery="3" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
-            </div>
-            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ CONTACT (Standard scroll) ════════ -->
-<div id="contact" class="standard-section">
+<!-- CONTACT -->
+<div id="contact" class="section">
   <div class="contact-full">
     <div class="contact-centered fade-up">
       <h2 class="contact-headline">
@@ -657,7 +626,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <span>&copy; 2025 Will Cahill — All Rights Reserved</span>
   <div class="footer-links">
@@ -669,35 +637,34 @@
 </footer>
 
 <script>
-  // Nav scroll
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
 
-  // Hamburger
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', function() { navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { navLinks.classList.remove('open'); }); });
 
-  // Scroll reveal
-  const fadeEls = document.querySelectorAll('.fade-up');
-  fadeEls.forEach(el => el.classList.add('hidden'));
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('hidden'); e.target.classList.add('visible'); } });
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.querySelectorAll('.fixed-bg').forEach(function(el) { el.classList.remove('fixed-bg'); });
+  }
+
+  var fadeEls = document.querySelectorAll('.fade-up');
+  fadeEls.forEach(function(el) { el.classList.add('hidden'); });
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.remove('hidden'); e.target.classList.add('visible'); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  fadeEls.forEach(el => observer.observe(el));
+  fadeEls.forEach(function(el) { observer.observe(el); });
 
-  // Gallery viewers
-  document.querySelectorAll('.gallery-viewer').forEach(viewer => {
-    const thumbs = viewer.querySelectorAll('.gallery-thumb');
-    const mainArea = viewer.querySelector('.gallery-main');
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        thumbs.forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.gallery-viewer').forEach(function(viewer) {
+    var thumbs = viewer.querySelectorAll('.gallery-thumb');
+    var mainArea = viewer.querySelector('.gallery-main');
+    thumbs.forEach(function(thumb) {
+      thumb.addEventListener('click', function() {
+        thumbs.forEach(function(t) { t.classList.remove('active'); });
         thumb.classList.add('active');
-        const idx = thumb.getAttribute('data-index');
-        const thumbStyle = window.getComputedStyle(thumb);
-        const bgImage = thumbStyle.backgroundImage;
+        var idx = thumb.getAttribute('data-index');
+        var bgImage = window.getComputedStyle(thumb).backgroundImage;
         if (bgImage && bgImage !== 'none') {
           mainArea.style.backgroundImage = bgImage;
           mainArea.style.backgroundSize = 'contain';
