@@ -46,7 +46,7 @@
   #work .sticky-content { margin-top: calc(-2000 / 1475 * 100vw); }
   #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }
   #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }
-  .icon-nav { position: fixed; top: 0; right: 0; z-index: 1000; display: flex; align-items: center; padding: 1.25rem 1.75rem; pointer-events: none; }
+  .icon-nav { position: fixed; top: 0; right: 0; z-index: 1000; display: flex; align-items: center; padding: 1.25rem 1.75rem; pointer-events: none; mix-blend-mode: difference; }
   .icon-nav-items { display: flex; align-items: center; gap: 0; flex-direction: row-reverse; }
   .icon-nav-items .icon-nav-link { pointer-events: none; }
   .icon-nav-items.open .icon-nav-link { pointer-events: auto; opacity: 1; transform: translateX(0); }
@@ -61,13 +61,13 @@
   .icon-nav-items:not(.open) .icon-nav-link:nth-child(3) { transition-delay: 0.12s; }
   .icon-nav-items:not(.open) .icon-nav-link:nth-child(2) { transition-delay: 0.16s; }
   .icon-nav-items:not(.open) .icon-nav-link:nth-child(1) { transition-delay: 0.20s; }
-  .icon-nav-link img { width: 31px; height: 31px; object-fit: contain; transition: transform 0.25s ease, filter 0.3s ease; }
+  .icon-nav-link img { width: 31px; height: 31px; object-fit: contain; transition: transform 0.25s ease; }
   .icon-nav-link:hover img { transform: scale(1.2); }
-  .icon-nav-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); font-family: 'Biro Script', cursive; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: none; color: white; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.25s ease; padding-top: 6px; }
+  .icon-nav-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); font-family: 'Biro Script', cursive; font-size: 1.0rem; letter-spacing: 0.08em; text-transform: none; color: white; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.25s ease; padding-top: 6px; }
   .icon-nav-link:hover .icon-nav-label { opacity: 1; }
   .menu-toggle { width: 59px; height: 59px; cursor: pointer; background: none; border: none; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); margin-left: 0.75rem; pointer-events: auto; }
   .menu-toggle.open { transform: rotate(90deg); }
-  .menu-toggle img { width: 45px; height: 45px; object-fit: contain; transition: filter 0.3s ease; }
+  .menu-toggle img { width: 45px; height: 45px; object-fit: contain; }
   #lead { background-image: url('images/LeadPrepV3.jpg'); background-color: black; background-size: 100% auto; background-position: center top; min-height: 100vh; }
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 8rem 3rem 3rem; }
   .hero-inner { max-width: 1100px; width: 100%; }
@@ -83,7 +83,7 @@
   .hero-name .char-w { font-family: 'Daniel', cursive; font-size: 0.75em; }
   .hero-name .char-il { font-family: 'Scruf', cursive; font-size: 0.5em; }
   .hero-name .char-l2 { font-family: 'Inkfree', cursive; font-size: 0.5em; }
-  .hero-name .char-cahill { font-family: 'Velocette', cursive; font-size: 1.35em; }
+  .hero-name .char-cahill { font-family: 'Velocette', cursive; font-size: 1.25em; }
   .reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); opacity: 0.45; transition: opacity 0.4s ease; }
   .reel-frame:hover, .reel-frame.playing { opacity: 1; }
   .reel-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
@@ -161,7 +161,7 @@
   .gallery-main { flex: 1; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .gallery-main-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome); }
   .gallery-main-placeholder svg { width: 36px; height: 36px; stroke: var(--chrome); fill: none; stroke-width: 1.2; }
-  #contact { background-image: url('images/ContactPrepV2.png'); background-color: transparent; background-size: 100% auto; background-position: center top; background-repeat: no-repeat; min-height: calc(2000 / 1410 * 100vw); z-index: 2; position: relative; margin-top: calc(-85 / 2000 * 100vw); }
+  #contact { background-image: url('images/ContactPrepV2.png'); background-color: transparent; background-size: 100% auto; background-position: center top; background-repeat: no-repeat; min-height: calc(2000 / 1410 * 100vw); z-index: 2; position: relative; margin-top: calc(-95 / 2000 * 100vw); }
   .contact-full { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10rem 3rem; }
   .contact-centered { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 500px; width: 100%; }
   .contact-headline { font-family: var(--font-display); font-size: clamp(2.07rem,4vw,3.22rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap; }
@@ -242,7 +242,7 @@
         </div>
       </div>
       <div class="hero-bottom-left fade-up stagger-1">
-        <h1 class="hero-name"><span class="char-w">W</span><span class="char-il"> il</span><span class="char-l2">l</span> <span class="last char-cahill">Cahill÷</span></h1>
+        <h1 class="hero-name"><span class="char-w">W</span><span class="char-il">il</span><span class="char-l2">l</span> <span class="last char-cahill">Cahill÷</span></h1>
         <p class="hero-tagline">Editor &nbsp; Producer &nbsp; Director &nbsp; Photographer</p>
       </div>
     </div>
@@ -461,33 +461,6 @@
   menuToggle.addEventListener('click', function(e) { e.stopPropagation(); if (isNavOpen) { closeNav(); } else { openNav(); } });
   iconNavItems.querySelectorAll('.icon-nav-link').forEach(function(link) { link.addEventListener('click', function() { closeNav(); }); });
   document.addEventListener('click', function(e) { if (isNavOpen && !document.getElementById('iconNav').contains(e.target)) { closeNav(); } });
-  (function() {
-    var iconNav = document.getElementById('iconNav');
-    var allNavImgs = iconNav.querySelectorAll('img');
-    var allNavLabels = iconNav.querySelectorAll('.icon-nav-label');
-    var sections = document.querySelectorAll('#lead, #about, .sticky-section, #contact');
-    function checkBrightness() {
-      var navRect = iconNav.getBoundingClientRect();
-      var sampleY = navRect.top + navRect.height / 2;
-      var onLight = false;
-      for (var i = 0; i < sections.length; i++) {
-        var r = sections[i].getBoundingClientRect();
-        if (sampleY >= r.top && sampleY <= r.bottom) {
-          var id = sections[i].id || '';
-          if (id === 'work' || id === 'experience' || id === 'photos') { onLight = true; }
-          if (id === 'contact') { var pct = (sampleY - r.top) / r.height; if (pct < 0.6) onLight = true; }
-          break;
-        }
-      }
-      var filterVal = onLight ? 'invert(1)' : 'none';
-      var labelColor = onLight ? '#000' : '#fff';
-      allNavImgs.forEach(function(img) { img.style.filter = filterVal; });
-      allNavLabels.forEach(function(lbl) { lbl.style.color = labelColor; });
-    }
-    window.addEventListener('scroll', checkBrightness, { passive: true });
-    window.addEventListener('resize', checkBrightness);
-    checkBrightness();
-  })();
   document.querySelectorAll('.sticky-bg img').forEach(function(img) {
     function checkFallback() {
       var naturalRatio = img.naturalHeight / img.naturalWidth;
