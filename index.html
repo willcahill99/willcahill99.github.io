@@ -26,6 +26,11 @@
     --font-mono: 'Space Mono', 'Courier New', monospace;
     --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
   }
+  @font-face { font-family: 'Biro Script'; src: url('fonts/Biro_Script_reduced.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Daniel'; src: url('fonts/daniel.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Scruf'; src: url('fonts/Scruf-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Inkfree'; src: url('fonts/Inkfree.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Velocette'; src: url('fonts/Velocette.ttf') format('truetype'); font-weight: normal; font-style: normal; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; font-size: 16px; }
   body { background: var(--dark); color: var(--charcoal); font-family: var(--font-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -45,7 +50,7 @@
   .icon-nav-items { display: flex; align-items: center; gap: 0; flex-direction: row-reverse; }
   .icon-nav-items .icon-nav-link { pointer-events: none; }
   .icon-nav-items.open .icon-nav-link { pointer-events: auto; opacity: 1; transform: translateX(0); }
-  .icon-nav-link { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; position: relative; opacity: 0; transform: translateX(30px); transition: opacity 0.35s ease, transform 0.35s ease; cursor: pointer; text-decoration: none; }
+  .icon-nav-link { display: flex; align-items: center; justify-content: center; width: 53px; height: 53px; position: relative; opacity: 0; transform: translateX(30px); transition: opacity 0.35s ease, transform 0.35s ease; cursor: pointer; text-decoration: none; }
   .icon-nav-items.open .icon-nav-link:nth-child(1) { transition-delay: 0.06s; }
   .icon-nav-items.open .icon-nav-link:nth-child(2) { transition-delay: 0.12s; }
   .icon-nav-items.open .icon-nav-link:nth-child(3) { transition-delay: 0.18s; }
@@ -56,43 +61,53 @@
   .icon-nav-items:not(.open) .icon-nav-link:nth-child(3) { transition-delay: 0.12s; }
   .icon-nav-items:not(.open) .icon-nav-link:nth-child(2) { transition-delay: 0.16s; }
   .icon-nav-items:not(.open) .icon-nav-link:nth-child(1) { transition-delay: 0.20s; }
-  .icon-nav-link img { width: 22px; height: 22px; object-fit: contain; transition: transform 0.25s ease, filter 0.3s ease; }
+  .icon-nav-link img { width: 31px; height: 31px; object-fit: contain; transition: transform 0.25s ease, filter 0.3s ease; }
   .icon-nav-link:hover img { transform: scale(1.2); }
-  .icon-nav-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: white; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.25s ease; padding-top: 6px; }
+  .icon-nav-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); font-family: 'Biro Script', cursive; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: none; color: white; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.25s ease; padding-top: 6px; }
   .icon-nav-link:hover .icon-nav-label { opacity: 1; }
-  .menu-toggle { width: 42px; height: 42px; cursor: pointer; background: none; border: none; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); margin-left: 0.75rem; pointer-events: auto; }
+  .menu-toggle { width: 59px; height: 59px; cursor: pointer; background: none; border: none; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); margin-left: 0.75rem; pointer-events: auto; }
   .menu-toggle.open { transform: rotate(90deg); }
-  .menu-toggle img { width: 32px; height: 32px; object-fit: contain; transition: filter 0.3s ease; }
+  .menu-toggle img { width: 45px; height: 45px; object-fit: contain; transition: filter 0.3s ease; }
   #lead { background-image: url('images/LeadPrepV3.jpg'); background-color: black; background-size: 100% auto; background-position: center top; min-height: 100vh; }
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 3rem 3rem; }
   .hero-inner { max-width: 1100px; width: 100%; }
   .hero-video-row { display: flex; justify-content: center; margin-bottom: 3rem; padding: 0 8%; }
   .hero-reel { width: 100%; max-width: 900px; }
+  .hero-socials { display: flex; justify-content: flex-end; gap: 1.25rem; padding-top: 0.75rem; }
+  .hero-socials a { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); transition: color 0.3s ease; }
+  .hero-socials a:hover { color: var(--cream); }
+  .hero-socials svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; }
   .hero-bottom-left { text-align: left; max-width: 600px; }
   .hero-name { font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 1rem; white-space: nowrap; }
-  .hero-name .last { color: var(--sky-blue); font-style: italic; }
-  .reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); }
+  .hero-name .last { color: var(--sky-blue); }
+  .hero-name .char-w { font-family: 'Daniel', cursive; }
+  .hero-name .char-il { font-family: 'Scruf', cursive; }
+  .hero-name .char-l2 { font-family: 'Inkfree', cursive; }
+  .hero-name .char-cahill { font-family: 'Velocette', cursive; }
+  .reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); opacity: 0.45; transition: opacity 0.4s ease; }
+  .reel-frame:hover, .reel-frame.playing { opacity: 1; }
   .reel-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
   .reel-play { width: 72px; height: 72px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; transition: all 0.35s ease; }
   .reel-frame:hover .reel-play { border-color: var(--sky-blue); transform: scale(1.08); background: rgba(90,125,149,0.2); }
   .reel-play svg { width: 24px; height: 24px; fill: white; margin-left: 3px; }
   .embed-note { position: absolute; bottom: 0.75rem; right: 0.75rem; font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); z-index: 2; }
-  .hero-tagline { font-size: 1.05rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 600px; font-style: italic; }
+  .hero-tagline { font-family: 'Biro Script', cursive; font-size: 1.05rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.55); max-width: 600px; font-style: normal; }
   .section-pad-heavy { padding: 10rem 3rem; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
   .section-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
   .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--steel-blue); }
   .section-title { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1rem; }
-  .section-title em { font-style: italic; color: var(--steel-blue); }
+  .section-title em { font-family: 'Biro Script', cursive; font-style: normal; color: var(--steel-blue); }
   .dark-text { color: var(--cream); }
   .dark-text .section-label { color: var(--sky-blue); }
   .dark-text .section-title { color: var(--cream); }
   .dark-text .section-title em { color: var(--sky-blue); }
   #about { background-image: url('images/AboutPrepV3.jpg'); background-color: black; background-size: 100% auto; background-position: center top; }
   #about .section-pad-heavy { padding-top: 6rem; }
+  #about .section-inner { max-width: none; padding-left: calc(50vw - 3rem); padding-right: 1.8rem; }
   #about::before { content: ''; position: absolute; inset: 0; background: rgba(15,14,13,0.0); z-index: 0; pointer-events: none; }
-  .about-layout { display: flex; justify-content: flex-end; margin-top: 2.5rem; }
-  .about-content-right { max-width: 700px; width: 100%; padding-right: 0; }
+  .about-layout { display: flex; justify-content: flex-start; margin-top: 0; }
+  .about-content-right { max-width: none; width: 100%; padding-right: 0; }
   .about-text p { font-size: 1.02rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
   .skills-heading { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sky-blue); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-top: 1rem; }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
@@ -101,20 +116,22 @@
   .education-block { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); border-left: 3px solid var(--steel-blue); }
   .edu-degree { font-family: var(--font-display); font-size: 1rem; margin-bottom: 0.25rem; color: var(--cream); }
   .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 0.15rem; }
-  .edu-note { font-size: 0.85rem; color: rgba(255,255,255,0.35); font-style: italic; }
+  .edu-note { font-family: 'Biro Script', cursive; font-size: 0.85rem; color: rgba(255,255,255,0.35); font-style: normal; }
   .work-intro { font-size: 1.02rem; line-height: 1.75; color: var(--mid-gray); margin-bottom: 4rem; }
   .project-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .project-card { position: relative; }
-  .project-video { aspect-ratio: 16/9; background: var(--dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 1.2rem; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-  .project-card:hover .project-video { transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,0.2); }
+  .project-video { aspect-ratio: 16/9; background: var(--dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 1.2rem; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease; opacity: 0.45; }
+  .project-card:hover .project-video { transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,0.2); opacity: 1; }
+  .project-video.playing { opacity: 1; }
   .project-video::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
   .project-video .reel-play { width: 54px; height: 54px; opacity: 0.65; transition: all 0.3s; }
   .project-card:hover .project-video .reel-play { opacity: 1; border-color: var(--sky-blue); background: rgba(90,125,149,0.15); }
   .project-video .reel-play svg { width: 18px; height: 18px; }
-  .project-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.4rem; }
+  .project-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.2rem; }
   .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel-blue); }
-  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--light-gray); }
-  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.4rem; }
+  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--light-gray); flex-shrink: 0; }
+  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; }
+  .project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; }
   .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--mid-gray); }
   .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--sand); }
@@ -127,7 +144,10 @@
   .timeline-desc { font-size: 0.88rem; line-height: 1.7; color: var(--charcoal); max-width: 520px; }
   .gallery-segment { margin-bottom: 6rem; }
   .gallery-segment:last-child { margin-bottom: 0; }
-  .gallery-segment-label { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--charcoal); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(59,84,104,0.15); }
+  .gallery-segment-label { font-family: 'Biro Script', cursive; font-size: 1.5rem; font-weight: 400; color: var(--charcoal); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(59,84,104,0.15); }
+  #photos .section-label { justify-content: flex-end; }
+  #photos .section-label::before { order: 2; }
+  #photos .gallery-segment-label { text-align: right; }
   .gallery-viewer { display: flex; gap: 1rem; height: 520px; }
   .gallery-thumbs { width: 120px; flex-shrink: 0; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 0.5rem; padding-right: 0.5rem; scrollbar-width: thin; scrollbar-color: var(--chrome) transparent; }
   .gallery-thumbs::-webkit-scrollbar { width: 4px; }
@@ -140,13 +160,13 @@
   .gallery-main { flex: 1; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .gallery-main-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome); }
   .gallery-main-placeholder svg { width: 36px; height: 36px; stroke: var(--chrome); fill: none; stroke-width: 1.2; }
-  #contact { background-image: url('images/ContactPrepV2.png'); background-color: transparent; background-size: 100% auto; background-position: center top; background-repeat: no-repeat; min-height: calc(2000 / 1410 * 100vw); z-index: 2; position: relative; }
+  #contact { background-image: url('images/ContactPrepV2.png'); background-color: transparent; background-size: 100% auto; background-position: center top; background-repeat: no-repeat; min-height: calc(2000 / 1410 * 100vw); z-index: 2; position: relative; margin-top: calc(-65 / 2000 * 100vw); }
   .contact-full { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10rem 3rem; }
   .contact-centered { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 500px; width: 100%; }
-  .contact-headline { font-family: var(--font-display); font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap; }
-  .contact-headline .line-blue { color: var(--steel-blue); display: block; }
-  .contact-headline .line-spacer { display: block; height: 5em; }
-  .contact-headline .line-sand { color: var(--sand); display: block; font-style: italic; }
+  .contact-headline { font-family: var(--font-display); font-size: clamp(2.07rem,4vw,3.22rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap; }
+  .contact-headline .line-blue { color: #ffffff; display: block; }
+  .contact-headline .line-spacer { display: block; height: 11em; }
+  .contact-headline .line-sand { font-family: 'Biro Script', cursive; color: var(--sand); display: block; font-style: normal; }
   .contact-links-center { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 2.5rem; }
   .contact-link { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); transition: all 0.3s; }
   .contact-link:hover { color: var(--steel-blue); }
@@ -169,9 +189,9 @@
   }
   @media (max-width: 768px) {
     .icon-nav { padding: 1rem 1rem; }
-    .menu-toggle img { width: 28px; height: 28px; }
-    .icon-nav-link img { width: 18px; height: 18px; }
-    .icon-nav-link { width: 32px; height: 32px; }
+    .menu-toggle img { width: 39px; height: 39px; }
+    .icon-nav-link img { width: 25px; height: 25px; }
+    .icon-nav-link { width: 45px; height: 45px; }
     .section-pad-heavy { padding: 7rem 1.5rem; }
     .hero { padding: 4rem 1.5rem 3rem; }
     .hero-name { white-space: normal; }
@@ -179,6 +199,7 @@
     #about::before { background: rgba(15,14,13,0.6); }
     .about-layout { justify-content: stretch; }
     .about-content-right { max-width: 100%; }
+    #about .section-inner { padding-left: 0; padding-right: 0; }
     .project-grid-2col { grid-template-columns: 1fr; }
     .gallery-viewer { flex-direction: column; height: auto; }
     .gallery-thumbs { width: 100%; flex-direction: row; overflow-x: auto; overflow-y: hidden; height: 80px; padding-right: 0; padding-bottom: 0.5rem; }
@@ -212,11 +233,16 @@
             <div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             <span class="embed-note">Embed demo reel here</span>
           </div>
+          <div class="hero-socials">
+            <a href="https://instagram.com/willcahill" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="mailto:willcahill00@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+            <a href="https://linkedin.com/in/will-cahill/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          </div>
         </div>
       </div>
       <div class="hero-bottom-left fade-up stagger-1">
-        <h1 class="hero-name">Will <span class="last">Cahill</span></h1>
-        <p class="hero-tagline">Editor, videographer, and producer with a sharp eye for narrative and a passion for post-production.</p>
+        <h1 class="hero-name"><span class="char-w">W</span><span class="char-il"> il</span><span class="char-l2">l</span> <span class="last char-cahill">Cahill÷</span></h1>
+        <p class="hero-tagline">Editor &nbsp; Producer &nbsp; Director &nbsp; Photographer</p>
       </div>
     </div>
   </section>
@@ -224,12 +250,6 @@
 <div id="about" class="section dark-text">
   <div class="section-pad-heavy">
     <div class="section-inner">
-      <div style="display:flex; justify-content:flex-end;">
-        <div style="max-width:700px; width:100%;">
-          <span class="section-label fade-up">About</span>
-          <h2 class="section-title fade-up stagger-1">Editor, producer,<br><em>problem solver</em></h2>
-        </div>
-      </div>
       <div class="about-layout">
         <div class="about-content-right">
           <div class="about-text fade-up stagger-2">
@@ -263,37 +283,66 @@
     <div class="section-pad-heavy">
       <div class="section-inner">
         <span class="section-label fade-up">Selected Work</span>
-        <p class="work-intro fade-up stagger-1">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
-        <div class="project-grid-2col fade-up stagger-2">
+        <div class="project-grid-2col fade-up stagger-1">
           <div class="project-card">
             <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Short Film</span><span class="project-year">2022</span></div>
-            <h3 class="project-title">The Seduction of a Modern Woman</h3>
-            <p class="project-desc">Editor and 1st AD. Managed a 15-person crew across 4 shoot days. First assembly through final cut including audio, color, and VFX.</p>
+            <div class="project-meta"><h3 class="project-title">'Shameless' Music Video</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
           </div>
           <div class="project-card">
             <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Podcast</span><span class="project-year">2024</span></div>
-            <h3 class="project-title">Loving Is...</h3>
-            <p class="project-desc">Interview-style spirituality podcast. Full editorial, graphics, and color grading.</p>
+            <div class="project-meta"><h3 class="project-title">Best Buy Spokeshologram</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
           </div>
           <div class="project-card">
             <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Web Series</span><span class="project-year">2024</span></div>
-            <h3 class="project-title">The Question Project</h3>
-            <p class="project-desc">Educational web series. Created graphics and full color grade.</p>
+            <div class="project-meta"><h3 class="project-title">Ninja Slushi</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
           </div>
           <div class="project-card">
             <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Music Video</span><span class="project-year">2024</span></div>
-            <h3 class="project-title">Music Video &#8212; Title Here</h3>
-            <p class="project-desc">Full edit and color grade.</p>
+            <div class="project-meta"><h3 class="project-title">Social 2</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
           </div>
           <div class="project-card">
             <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-            <div class="project-meta"><span class="project-type">Commercial</span><span class="project-year">2023</span></div>
-            <h3 class="project-title">Commercial Spot &#8212; Client Name</h3>
-            <p class="project-desc">Promotional BTS and social content for client marketing campaigns at X-15 Industries.</p>
+            <div class="project-meta"><h3 class="project-title">The Bookreader</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><h3 class="project-title">'Masterpeace' Music Video</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><h3 class="project-title">'Baby!' Music Video</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><h3 class="project-title">Pesticide</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><h3 class="project-title">'Burnout' Music Video</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><h3 class="project-title">Faking It</h3><span class="project-year">Year</span></div>
+            <div class="project-roles">Roles</div>
+            <p class="project-desc">Description</p>
           </div>
         </div>
       </div>
@@ -385,11 +434,10 @@
         <span class="line-sand">Let&#39;s Talk!</span>
       </h2>
       <div class="contact-links-center">
-        <a href="/cdn-cgi/l/email-protection#89fee0e5e5eae8e1e0e5e5b0b0c9eee4e8e0e5a7eae6e4" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="cabda3a6a6a9aba2a3a6a6f3f38aada7aba3a6e4a9a5a7">[email&#160;protected]</span></a>
-        <a href="tel:9737657064" class="contact-link"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12>(973) 765-7064</a>
-        <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
-        <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
         <a href="https://instagram.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
+        <a href="/cdn-cgi/l/email-protection#89fee0e5e5eae8e1e0e5e5b0b0c9eee4e8e0e5a7eae6e4" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="cabda3a6a6a9aba2a3a6a6f3f38aada7aba3a6e4a9a5a7">[email&#160;protected]</span></a>
+        <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
       </div>
     </div>
   </div>
