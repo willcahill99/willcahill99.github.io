@@ -124,14 +124,15 @@
   /* ── LEAD ── */
   #lead {
     background-image: url('images/LeadPrepV3.jpg');
-    background-color: var(--dark);
-    background-size: cover;
+    background-color: black;
+    background-size: 100% auto;
+    background-position: center top;
     min-height: 100vh;
   }
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
     justify-content: center; align-items: center; text-align: center;
-    padding: 4rem 2rem 6rem;
+    padding: 4rem 2rem 3rem;
   }
   .hero-inner { max-width: 920px; width: 100%; }
   .hero-name {
@@ -203,16 +204,18 @@
   /* ── ABOUT ── */
   #about {
     background-image: url('images/AboutPrepV3.jpg');
-    background-color: var(--dark);
-    background-size: cover;
+    background-color: black;
+    background-size: 100% auto;
+    background-position: center top;
   }
+  #about .section-pad-heavy { padding-top: 6rem; }
   #about::before {
     content: ''; position: absolute; inset: 0;
     background: rgba(15,14,13,0.0); z-index: 0;
     pointer-events: none;
   }
   .about-layout { display: flex; justify-content: flex-end; margin-top: 2.5rem; }
-  .about-content-right { max-width: 620px; width: 100%; }
+  .about-content-right { max-width: 700px; width: 100%; padding-right: 0; }
   .about-text p { font-size: 1.02rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
   .skills-heading {
     font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em;
@@ -470,7 +473,7 @@
   <div class="section-pad-heavy">
     <div class="section-inner">
       <div style="display:flex; justify-content:flex-end;">
-        <div style="max-width:620px; width:100%;">
+        <div style="max-width:700px; width:100%;">
           <span class="section-label fade-up">About</span>
           <h2 class="section-title fade-up stagger-1">Editor, producer,<br><em>problem solver</em></h2>
         </div>
