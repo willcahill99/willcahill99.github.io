@@ -56,22 +56,35 @@
   .sticky-bg {
     position: sticky;
     top: 0;
-    height: 100vh;
+    width: 100%;
     z-index: 0;
     overflow: hidden;
   }
   .sticky-bg img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* Fallback: if viewport is so extreme the image can't fill the sticky area,
+     cover prevents letterboxing. On standard screens width:100% + height:auto
+     will always produce a taller-than-viewport image, so cover won't activate. */
+  .sticky-bg.fallback-cover {
+    height: 100vh;
+  }
+  .sticky-bg.fallback-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
   }
   .sticky-content {
     position: relative;
     z-index: 1;
-    margin-top: -100vh;
-    min-height: 100vh;
   }
+  /* Each sticky section: pull content up by the image's natural height */
+  #work .sticky-content { margin-top: calc(-2000 / 1475 * 100vw); }       /* 1475x2000 */
+  #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }  /* 2000x1506 */
+  #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }      /* 1939x2000 */
 
   /* ── NAV ── */
   nav {
@@ -442,7 +455,7 @@
         </div>
         <div class="hero-links">
           <a href="#work" class="hero-link"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" stroke="currentColor" fill="none"/></svg>View Work</a>
-          <a href="mailto:willcahill99@gmail.com" class="hero-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
+          <a href="/cdn-cgi/l/email-protection#0c7b6560606f6d6465606035354c6b616d6560226f6361" class="hero-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
           <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="hero-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
           <a href="https://instagram.com/willcahill" target="_blank" class="hero-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
         </div>
@@ -631,7 +644,7 @@
         <span class="line-sand">Let's Talk!</span>
       </h2>
       <div class="contact-links-center">
-        <a href="mailto:willcahill99@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>willcahill99@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#1f687673737c7e7776737326265f78727e7673317c7072" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="9deaf4f1f1fefcf5f4f1f1a4a4ddfaf0fcf4f1b3fef2f0">[email&#160;protected]</span></a>
         <a href="tel:9737657064" class="contact-link"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>(973) 765-7064</a>
         <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
         <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
@@ -647,11 +660,11 @@
     <a href="https://vimeo.com/willcahill" target="_blank">Vimeo</a>
     <a href="https://linkedin.com/in/will-cahill/" target="_blank">LinkedIn</a>
     <a href="https://instagram.com/willcahill" target="_blank">Instagram</a>
-    <a href="mailto:willcahill99@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#02756b6e6e61636a6b6e6e3b3b42656f636b6e2c616d6f">Email</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
 
@@ -659,6 +672,22 @@
   var navLinks = document.getElementById('navLinks');
   hamburger.addEventListener('click', function() { navLinks.classList.toggle('open'); });
   navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { navLinks.classList.remove('open'); }); });
+
+  // Cover fallback: only activate if image at 100vw would be shorter than viewport
+  document.querySelectorAll('.sticky-bg img').forEach(function(img) {
+    function checkFallback() {
+      var naturalRatio = img.naturalHeight / img.naturalWidth;
+      var imageHeightAtFullWidth = window.innerWidth * naturalRatio;
+      if (imageHeightAtFullWidth < window.innerHeight) {
+        img.parentElement.classList.add('fallback-cover');
+      } else {
+        img.parentElement.classList.remove('fallback-cover');
+      }
+    }
+    if (img.complete) { checkFallback(); }
+    else { img.addEventListener('load', checkFallback); }
+    window.addEventListener('resize', checkFallback);
+  });
 
   var fadeEls = document.querySelectorAll('.fade-up');
   fadeEls.forEach(function(el) { el.classList.add('hidden'); });
