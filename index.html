@@ -42,7 +42,7 @@
     background-size: 200px;
   }
 
-  /* ── SECTIONS ── */
+  /* ── STANDARD SECTIONS ── */
   .section {
     position: relative;
     background-size: cover;
@@ -65,26 +65,15 @@
     width: 100%;
     height: auto;
   }
-  /* Fallback: if viewport is so extreme the image can't fill the sticky area,
-     cover prevents letterboxing. On standard screens width:100% + height:auto
-     will always produce a taller-than-viewport image, so cover won't activate. */
-  .sticky-bg.fallback-cover {
-    height: 100vh;
-  }
+  .sticky-bg.fallback-cover { height: 100vh; }
   .sticky-bg.fallback-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
   }
-  .sticky-content {
-    position: relative;
-    z-index: 1;
-  }
-  /* Each sticky section: pull content up by the image's natural height */
-  #work .sticky-content { margin-top: calc(-2000 / 1475 * 100vw); }       /* 1475x2000 */
-  #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }  /* 2000x1506 */
-  #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }      /* 1939x2000 */
+  .sticky-content { position: relative; z-index: 1; }
+  #work .sticky-content { margin-top: calc(-2000 / 1475 * 100vw); }
+  #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }
+  #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }
 
   /* ── NAV ── */
   nav {
@@ -131,18 +120,22 @@
   }
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center;
-    padding: 4rem 2rem 3rem;
+    justify-content: center; align-items: center;
+    padding: 4rem 3rem 3rem;
   }
-  .hero-inner { max-width: 920px; width: 100%; }
+  .hero-inner { max-width: 1100px; width: 100%; }
+  .hero-video-row {
+    display: flex; justify-content: center;
+    margin-bottom: 3rem; padding: 0 8%;
+  }
+  .hero-reel { width: 100%; max-width: 900px; }
+  .hero-bottom-left { text-align: left; max-width: 600px; }
   .hero-name {
     font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem);
     font-weight: 400; line-height: 0.95; letter-spacing: -0.02em;
-    color: var(--cream); margin-bottom: 2.5rem; white-space: nowrap;
+    color: var(--cream); margin-bottom: 1rem; white-space: nowrap;
   }
   .hero-name .last { color: var(--sky-blue); font-style: italic; }
-  .hero-reel-row { display: flex; align-items: stretch; gap: 2rem; width: 100%; margin: 0 auto 2rem; }
-  .hero-reel { flex: 1; min-width: 0; }
   .reel-frame {
     background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9;
     display: flex; align-items: center; justify-content: center;
@@ -166,20 +159,9 @@
     font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: rgba(255,255,255,0.3); z-index: 2;
   }
-  .hero-links { display: flex; flex-direction: column; justify-content: center; gap: 0.65rem; flex-shrink: 0; width: 180px; }
-  .hero-link {
-    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--cream); text-decoration: none;
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.75rem 1.2rem; border: 1.5px solid rgba(255,255,255,0.3);
-    transition: all 0.3s ease; white-space: nowrap;
-  }
-  .hero-link:hover { background: var(--slate-blue); border-color: var(--slate-blue); }
-  .hero-link svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.5; }
   .hero-tagline {
     font-size: 1.05rem; font-weight: 300; line-height: 1.7;
-    color: rgba(255,255,255,0.55); max-width: 600px; margin: 0 auto;
-    font-style: italic;
+    color: rgba(255,255,255,0.55); max-width: 600px; font-style: italic;
   }
 
   /* ── SHARED ── */
@@ -211,8 +193,7 @@
   #about .section-pad-heavy { padding-top: 6rem; }
   #about::before {
     content: ''; position: absolute; inset: 0;
-    background: rgba(15,14,13,0.0); z-index: 0;
-    pointer-events: none;
+    background: rgba(15,14,13,0.0); z-index: 0; pointer-events: none;
   }
   .about-layout { display: flex; justify-content: flex-end; margin-top: 2.5rem; }
   .about-content-right { max-width: 700px; width: 100%; padding-right: 0; }
@@ -220,8 +201,7 @@
   .skills-heading {
     font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--sky-blue); margin-bottom: 1.25rem;
-    padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin-top: 1rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-top: 1rem;
   }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
   .skill-tag {
@@ -336,14 +316,11 @@
     background-position: center top;
     background-repeat: no-repeat;
     min-height: calc(2000 / 1410 * 100vw);
-    z-index: 2;
-    position: relative;
+    z-index: 2; position: relative;
   }
   .contact-full {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    padding: 10rem 3rem;
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; padding: 10rem 3rem;
   }
   .contact-centered {
     display: flex; flex-direction: column;
@@ -352,8 +329,7 @@
   }
   .contact-headline {
     font-family: var(--font-display); font-size: clamp(1.8rem,3.5vw,2.8rem);
-    font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem;
-    white-space: nowrap;
+    font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap;
   }
   .contact-headline .line-blue { color: var(--steel-blue); display: block; }
   .contact-headline .line-spacer { display: block; height: 5em; }
@@ -394,7 +370,7 @@
   @media (max-width: 1024px) {
     nav { padding: 1rem 2rem; }
     .section-pad-heavy { padding: 8rem 2rem; }
-    .hero { padding: 4rem 2rem 5rem; }
+    .hero { padding: 4rem 2rem 3rem; }
     .gallery-viewer { height: 420px; }
     .gallery-thumbs { width: 100px; }
   }
@@ -408,11 +384,9 @@
     }
     .hamburger { display: flex; }
     .section-pad-heavy { padding: 7rem 1.5rem; }
-    .hero { padding: 4rem 1.5rem 4rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
     .hero-name { white-space: normal; }
-    .hero-reel-row { flex-direction: column; }
-    .hero-links { flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; }
-    .hero-link { padding: 0.7rem 1rem; font-size: 0.6rem; }
+    .hero-video-row { padding: 0; }
     #about::before { background: rgba(15,14,13,0.6); }
     .about-layout { justify-content: stretch; }
     .about-content-right { max-width: 100%; }
@@ -448,22 +422,18 @@
 <div id="lead" class="section">
   <section class="hero">
     <div class="hero-inner">
-      <h1 class="hero-name fade-up">Will <span class="last">Cahill</span></h1>
-      <div class="hero-reel-row fade-up stagger-1">
+      <div class="hero-video-row fade-up">
         <div class="hero-reel">
           <div class="reel-frame">
             <div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             <span class="embed-note">Embed demo reel here</span>
           </div>
         </div>
-        <div class="hero-links">
-          <a href="#work" class="hero-link"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" stroke="currentColor" fill="none"/></svg>View Work</a>
-          <a href="/cdn-cgi/l/email-protection#0c7b6560606f6d6465606035354c6b616d6560226f6361" class="hero-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
-          <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="hero-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
-          <a href="https://instagram.com/willcahill" target="_blank" class="hero-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
-        </div>
       </div>
-      <p class="hero-tagline fade-up stagger-2">Editor, videographer, and producer with a sharp eye for narrative and a passion for post-production.</p>
+      <div class="hero-bottom-left fade-up stagger-1">
+        <h1 class="hero-name">Will <span class="last">Cahill</span></h1>
+        <p class="hero-tagline">Editor, videographer, and producer with a sharp eye for narrative and a passion for post-production.</p>
+      </div>
     </div>
   </section>
 </div>
@@ -514,42 +484,42 @@
   <div class="sticky-content">
     <div class="section-pad-heavy">
       <div class="section-inner">
-      <span class="section-label fade-up">Selected Work</span>
-      <p class="work-intro fade-up stagger-1">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
-      <div class="project-grid-2col fade-up stagger-2">
-        <div class="project-card">
-          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-          <div class="project-meta"><span class="project-type">Short Film</span><span class="project-year">2022</span></div>
-          <h3 class="project-title">The Seduction of a Modern Woman</h3>
-          <p class="project-desc">Editor and 1st AD. Managed a 15-person crew across 4 shoot days. First assembly through final cut including audio, color, and VFX.</p>
-        </div>
-        <div class="project-card">
-          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-          <div class="project-meta"><span class="project-type">Podcast</span><span class="project-year">2024</span></div>
-          <h3 class="project-title">Loving Is...</h3>
-          <p class="project-desc">Interview-style spirituality podcast. Full editorial, graphics, and color grading.</p>
-        </div>
-        <div class="project-card">
-          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-          <div class="project-meta"><span class="project-type">Web Series</span><span class="project-year">2024</span></div>
-          <h3 class="project-title">The Question Project</h3>
-          <p class="project-desc">Educational web series. Created graphics and full color grade.</p>
-        </div>
-        <div class="project-card">
-          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-          <div class="project-meta"><span class="project-type">Music Video</span><span class="project-year">2024</span></div>
-          <h3 class="project-title">Music Video — Title Here</h3>
-          <p class="project-desc">Full edit and color grade.</p>
-        </div>
-        <div class="project-card">
-          <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
-          <div class="project-meta"><span class="project-type">Commercial</span><span class="project-year">2023</span></div>
-          <h3 class="project-title">Commercial Spot — Client Name</h3>
-          <p class="project-desc">Promotional BTS and social content for client marketing campaigns at X-15 Industries.</p>
+        <span class="section-label fade-up">Selected Work</span>
+        <p class="work-intro fade-up stagger-1">A selection of editing, producing, and post-production work across commercial, narrative, and digital content.</p>
+        <div class="project-grid-2col fade-up stagger-2">
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><span class="project-type">Short Film</span><span class="project-year">2022</span></div>
+            <h3 class="project-title">The Seduction of a Modern Woman</h3>
+            <p class="project-desc">Editor and 1st AD. Managed a 15-person crew across 4 shoot days. First assembly through final cut including audio, color, and VFX.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><span class="project-type">Podcast</span><span class="project-year">2024</span></div>
+            <h3 class="project-title">Loving Is...</h3>
+            <p class="project-desc">Interview-style spirituality podcast. Full editorial, graphics, and color grading.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><span class="project-type">Web Series</span><span class="project-year">2024</span></div>
+            <h3 class="project-title">The Question Project</h3>
+            <p class="project-desc">Educational web series. Created graphics and full color grade.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><span class="project-type">Music Video</span><span class="project-year">2024</span></div>
+            <h3 class="project-title">Music Video — Title Here</h3>
+            <p class="project-desc">Full edit and color grade.</p>
+          </div>
+          <div class="project-card">
+            <div class="project-video"><div class="reel-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg></div><span class="embed-note">Embed video here</span></div>
+            <div class="project-meta"><span class="project-type">Commercial</span><span class="project-year">2023</span></div>
+            <h3 class="project-title">Commercial Spot — Client Name</h3>
+            <p class="project-desc">Promotional BTS and social content for client marketing campaigns at X-15 Industries.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -561,17 +531,17 @@
   <div class="sticky-content">
     <div class="section-pad-heavy">
       <div class="section-inner">
-      <span class="section-label fade-up">Experience</span>
-      <div class="timeline">
-        <div class="timeline-item fade-up"><div class="timeline-year">2024 — Present</div><div class="timeline-role">Freelance Editor</div><div class="timeline-company">Self-Employed · Los Angeles</div><div class="timeline-desc">Edit interview-style podcasts, create graphics and color grade web series, edit music videos, and independently produce short films.</div></div>
-        <div class="timeline-item fade-up"><div class="timeline-year">2022 — Present</div><div class="timeline-role">Production Specialist</div><div class="timeline-company">X-15 Industries</div><div class="timeline-desc">Quality control and final delivery of digital, broadcast, and social spots. Shoot and edit promotional BTS videos. Create video material for social media and pitch decks.</div></div>
-        <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Editor / 1st AD</div><div class="timeline-company">The Seduction of a Modern Woman</div><div class="timeline-desc">Created shot lists and schedules, managed 15-person crew. Edited first assembly through final cut including audio, color, and VFX.</div></div>
-        <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Production Assistant</div><div class="timeline-company">Entertainment Studios</div><div class="timeline-desc">Maintained soundstages, production offices, and trailers. Transferred camera files to post production on shoot days.</div></div>
-        <div class="timeline-item fade-up"><div class="timeline-year">2021</div><div class="timeline-role">Editing Intern</div><div class="timeline-company">Link Entertainment</div><div class="timeline-desc">Compiled and edited reels for current and prospective clients. Managed client social media posts.</div></div>
-        <div class="timeline-item fade-up"><div class="timeline-year">2018 — 2022</div><div class="timeline-role">Head of Content Creation</div><div class="timeline-company">Orange Television Network: Live from Studio B · Syracuse University</div><div class="timeline-desc">Led weekly production meetings. Oversaw development, production, and delivery of sketches for bi-weekly live shows. Trained new members on equipment and processes.</div></div>
+        <span class="section-label fade-up">Experience</span>
+        <div class="timeline">
+          <div class="timeline-item fade-up"><div class="timeline-year">2024 — Present</div><div class="timeline-role">Freelance Editor</div><div class="timeline-company">Self-Employed · Los Angeles</div><div class="timeline-desc">Edit interview-style podcasts, create graphics and color grade web series, edit music videos, and independently produce short films.</div></div>
+          <div class="timeline-item fade-up"><div class="timeline-year">2022 — Present</div><div class="timeline-role">Production Specialist</div><div class="timeline-company">X-15 Industries</div><div class="timeline-desc">Quality control and final delivery of digital, broadcast, and social spots. Shoot and edit promotional BTS videos. Create video material for social media and pitch decks.</div></div>
+          <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Editor / 1st AD</div><div class="timeline-company">The Seduction of a Modern Woman</div><div class="timeline-desc">Created shot lists and schedules, managed 15-person crew. Edited first assembly through final cut including audio, color, and VFX.</div></div>
+          <div class="timeline-item fade-up"><div class="timeline-year">2022</div><div class="timeline-role">Production Assistant</div><div class="timeline-company">Entertainment Studios</div><div class="timeline-desc">Maintained soundstages, production offices, and trailers. Transferred camera files to post production on shoot days.</div></div>
+          <div class="timeline-item fade-up"><div class="timeline-year">2021</div><div class="timeline-role">Editing Intern</div><div class="timeline-company">Link Entertainment</div><div class="timeline-desc">Compiled and edited reels for current and prospective clients. Managed client social media posts.</div></div>
+          <div class="timeline-item fade-up"><div class="timeline-year">2018 — 2022</div><div class="timeline-role">Head of Content Creation</div><div class="timeline-company">Orange Television Network: Live from Studio B · Syracuse University</div><div class="timeline-desc">Led weekly production meetings. Oversaw development, production, and delivery of sketches for bi-weekly live shows. Trained new members on equipment and processes.</div></div>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -583,57 +553,57 @@
   <div class="sticky-content">
     <div class="section-pad-heavy">
       <div class="section-inner">
-      <span class="section-label fade-up">Photography</span>
-      <div class="gallery-segment fade-up stagger-1">
-        <div class="gallery-segment-label">On Set &amp; BTS</div>
-        <div class="gallery-viewer">
-          <div class="gallery-thumbs">
-            <div class="gallery-thumb active" data-gallery="1" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-            <div class="gallery-thumb" data-gallery="1" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+        <span class="section-label fade-up">Photography</span>
+        <div class="gallery-segment fade-up stagger-1">
+          <div class="gallery-segment-label">On Set &amp; BTS</div>
+          <div class="gallery-viewer">
+            <div class="gallery-thumbs">
+              <div class="gallery-thumb active" data-gallery="1" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+            </div>
+            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
           </div>
-          <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
         </div>
-      </div>
-      <div class="gallery-segment fade-up">
-        <div class="gallery-segment-label">Live Performance</div>
-        <div class="gallery-viewer">
-          <div class="gallery-thumbs">
-            <div class="gallery-thumb active" data-gallery="2" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-            <div class="gallery-thumb" data-gallery="2" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+        <div class="gallery-segment fade-up">
+          <div class="gallery-segment-label">Live Performance</div>
+          <div class="gallery-viewer">
+            <div class="gallery-thumbs">
+              <div class="gallery-thumb active" data-gallery="2" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+            </div>
+            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
           </div>
-          <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
         </div>
-      </div>
-      <div class="gallery-segment fade-up">
-        <div class="gallery-segment-label">What I Like to Do</div>
-        <div class="gallery-viewer">
-          <div class="gallery-thumbs">
-            <div class="gallery-thumb active" data-gallery="3" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-            <div class="gallery-thumb" data-gallery="3" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+        <div class="gallery-segment fade-up">
+          <div class="gallery-segment-label">What I Like to Do</div>
+          <div class="gallery-viewer">
+            <div class="gallery-thumbs">
+              <div class="gallery-thumb active" data-gallery="3" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+            </div>
+            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
           </div>
-          <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -647,7 +617,7 @@
         <span class="line-sand">Let's Talk!</span>
       </h2>
       <div class="contact-links-center">
-        <a href="/cdn-cgi/l/email-protection#1f687673737c7e7776737326265f78727e7673317c7072" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="9deaf4f1f1fefcf5f4f1f1a4a4ddfaf0fcf4f1b3fef2f0">[email&#160;protected]</span></a>
+        <a href="mailto:willcahill99@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>willcahill99@gmail.com</a>
         <a href="tel:9737657064" class="contact-link"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>(973) 765-7064</a>
         <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
         <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
@@ -663,11 +633,11 @@
     <a href="https://vimeo.com/willcahill" target="_blank">Vimeo</a>
     <a href="https://linkedin.com/in/will-cahill/" target="_blank">LinkedIn</a>
     <a href="https://instagram.com/willcahill" target="_blank">Instagram</a>
-    <a href="/cdn-cgi/l/email-protection#02756b6e6e61636a6b6e6e3b3b42656f636b6e2c616d6f">Email</a>
+    <a href="mailto:willcahill99@gmail.com">Email</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
 
