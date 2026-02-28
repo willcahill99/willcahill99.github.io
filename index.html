@@ -75,40 +75,68 @@
   #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }
   #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 1.25rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(15,14,13,0.75);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: all 0.3s;
+  /* ── ICON NAV ── */
+  .icon-nav {
+    position: fixed; top: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center;
+    padding: 1.25rem 1.75rem;
+    mix-blend-mode: difference;
   }
-  nav.scrolled { padding: 0.85rem 3rem; box-shadow: 0 2px 24px rgba(0,0,0,0.2); }
-  .nav-logo {
-    font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--cream); text-decoration: none;
+  .icon-nav-items {
+    display: flex; align-items: center; gap: 0;
+    pointer-events: none;
+    flex-direction: row-reverse;
   }
-  .nav-logo span { color: var(--sky-blue); }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,0.5);
-    text-decoration: none; position: relative; transition: color 0.3s;
+  .icon-nav-items.open { pointer-events: auto; }
+  .icon-nav-link {
+    display: flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; position: relative;
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    cursor: pointer; text-decoration: none;
   }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0;
-    width: 0; height: 1.5px; background: var(--sky-blue); transition: width 0.3s ease;
+  .icon-nav-items.open .icon-nav-link {
+    opacity: 1; transform: translateX(0);
   }
-  .nav-links a:hover { color: var(--cream); }
-  .nav-links a:hover::after { width: 100%; }
-  .hamburger {
-    display: none; flex-direction: column; gap: 5px;
-    cursor: pointer; background: none; border: none; padding: 4px;
+  .icon-nav-items.open .icon-nav-link:nth-child(1) { transition-delay: 0.06s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(2) { transition-delay: 0.12s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(3) { transition-delay: 0.18s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(4) { transition-delay: 0.24s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(5) { transition-delay: 0.30s; }
+  /* When closing, reverse the stagger */
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(5) { transition-delay: 0.04s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(4) { transition-delay: 0.08s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(3) { transition-delay: 0.12s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(2) { transition-delay: 0.16s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(1) { transition-delay: 0.20s; }
+  .icon-nav-link img {
+    width: 22px; height: 22px;
+    object-fit: contain;
+    transition: transform 0.25s ease;
   }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: 0.3s; }
+  .icon-nav-link:hover img { transform: scale(1.2); }
+  .icon-nav-label {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: white;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity 0.25s ease;
+    padding-top: 6px;
+  }
+  .icon-nav-link:hover .icon-nav-label { opacity: 1; }
+  .menu-toggle {
+    width: 42px; height: 42px;
+    cursor: pointer; background: none; border: none; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 0.75rem;
+  }
+  .menu-toggle.open { transform: rotate(90deg); }
+  .menu-toggle img {
+    width: 32px; height: 32px;
+    object-fit: contain;
+  }
 
   /* ── LEAD ── */
   #lead {
@@ -368,21 +396,16 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
-    nav { padding: 1rem 2rem; }
     .section-pad-heavy { padding: 8rem 2rem; }
     .hero { padding: 4rem 2rem 3rem; }
     .gallery-viewer { height: 420px; }
     .gallery-thumbs { width: 100px; }
   }
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .nav-links.open {
-      display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
-      background: rgba(15,14,13,0.97); backdrop-filter: blur(14px);
-      padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .hamburger { display: flex; }
+    .icon-nav { padding: 1rem 1rem; }
+    .menu-toggle img { width: 28px; height: 28px; }
+    .icon-nav-link img { width: 18px; height: 18px; }
+    .icon-nav-link { width: 32px; height: 32px; }
     .section-pad-heavy { padding: 7rem 1.5rem; }
     .hero { padding: 4rem 1.5rem 3rem; }
     .hero-name { white-space: normal; }
@@ -406,17 +429,18 @@
 </head>
 <body>
 
-<nav id="nav">
-  <a href="#" class="nav-logo">W<span>.</span>C</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#photos">Photos</a></li>
-    <li><a href="#contact">Connect</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+<div class="icon-nav" id="iconNav">
+  <div class="icon-nav-items" id="iconNavItems">
+    <a href="#contact" class="icon-nav-link"><img src="images/icons/Connect.png" alt="Connect"><span class="icon-nav-label">Connect</span></a>
+    <a href="#photos" class="icon-nav-link"><img src="images/icons/Photos.png" alt="Photos"><span class="icon-nav-label">Photos</span></a>
+    <a href="#experience" class="icon-nav-link"><img src="images/icons/Resume1.png" alt="Experience"><span class="icon-nav-label">Resume</span></a>
+    <a href="#work" class="icon-nav-link"><img src="images/icons/play2.png" alt="Work"><span class="icon-nav-label">Work</span></a>
+    <a href="#about" class="icon-nav-link"><img src="images/icons/About.png" alt="About"><span class="icon-nav-label">About</span></a>
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <img src="images/icons/Menu.png" alt="Menu">
+  </button>
+</div>
 
 <!-- LEAD -->
 <div id="lead" class="section">
@@ -617,7 +641,7 @@
         <span class="line-sand">Let's Talk!</span>
       </h2>
       <div class="contact-links-center">
-        <a href="mailto:willcahill99@gmail.com" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>willcahill99@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#f6819f9a9a95979e9f9a9acfcfb6919b979f9ad895999b" class="contact-link"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span class="__cf_email__" data-cfemail="9becf2f7f7f8faf3f2f7f7a2a2dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a>
         <a href="tel:9737657064" class="contact-link"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>(973) 765-7064</a>
         <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
         <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
@@ -633,18 +657,43 @@
     <a href="https://vimeo.com/willcahill" target="_blank">Vimeo</a>
     <a href="https://linkedin.com/in/will-cahill/" target="_blank">LinkedIn</a>
     <a href="https://instagram.com/willcahill" target="_blank">Instagram</a>
-    <a href="mailto:willcahill99@gmail.com">Email</a>
+    <a href="/cdn-cgi/l/email-protection#35425c595956545d5c59590c0c755258545c591b565a58">Email</a>
   </div>
 </footer>
 
-<script>
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 50); });
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Icon Nav toggle
+  var menuToggle = document.getElementById('menuToggle');
+  var iconNavItems = document.getElementById('iconNavItems');
+  var isNavOpen = false;
 
-  var hamburger = document.getElementById('hamburger');
-  var navLinks = document.getElementById('navLinks');
-  hamburger.addEventListener('click', function() { navLinks.classList.toggle('open'); });
-  navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { navLinks.classList.remove('open'); }); });
+  function openNav() {
+    isNavOpen = true;
+    menuToggle.classList.add('open');
+    iconNavItems.classList.add('open');
+  }
+  function closeNav() {
+    isNavOpen = false;
+    menuToggle.classList.remove('open');
+    iconNavItems.classList.remove('open');
+  }
+
+  menuToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (isNavOpen) { closeNav(); } else { openNav(); }
+  });
+
+  // Close when clicking a nav link
+  iconNavItems.querySelectorAll('.icon-nav-link').forEach(function(link) {
+    link.addEventListener('click', function() { closeNav(); });
+  });
+
+  // Close when clicking anywhere else
+  document.addEventListener('click', function(e) {
+    if (isNavOpen && !document.getElementById('iconNav').contains(e.target)) {
+      closeNav();
+    }
+  });
 
   // Cover fallback: only activate if image at 100vw would be shorter than viewport
   document.querySelectorAll('.sticky-bg img').forEach(function(img) {
@@ -686,11 +735,4 @@
           mainArea.innerHTML = '';
         } else {
           mainArea.style.backgroundImage = 'none';
-          mainArea.innerHTML = '<div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Photo ' + (parseInt(idx) + 1) + '</div>';
-        }
-      });
-    });
-  });
-</script>
-</body>
-</html>
+          mainArea.in
