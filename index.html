@@ -80,7 +80,6 @@
     position: fixed; top: 0; right: 0; z-index: 1000;
     display: flex; align-items: center;
     padding: 1.25rem 1.75rem;
-    mix-blend-mode: difference;
   }
   .icon-nav-items {
     display: flex; align-items: center; gap: 0;
@@ -113,6 +112,7 @@
     width: 22px; height: 22px;
     object-fit: contain;
     transition: transform 0.25s ease;
+    mix-blend-mode: difference;
   }
   .icon-nav-link:hover img { transform: scale(1.2); }
   .icon-nav-label {
@@ -122,6 +122,7 @@
     white-space: nowrap; pointer-events: none;
     opacity: 0; transition: opacity 0.25s ease;
     padding-top: 6px;
+    mix-blend-mode: difference;
   }
   .icon-nav-link:hover .icon-nav-label { opacity: 1; }
   .menu-toggle {
@@ -136,6 +137,7 @@
   .menu-toggle img {
     width: 32px; height: 32px;
     object-fit: contain;
+    mix-blend-mode: difference;
   }
 
   /* ── LEAD ── */
