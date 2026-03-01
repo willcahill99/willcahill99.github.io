@@ -70,20 +70,20 @@
   .menu-toggle img { width: 45px; height: 45px; object-fit: contain; }
   #lead { background-image: url('images/LeadPrepV3.jpg'); background-color: black; background-size: 100% auto; background-position: center top; min-height: 100vh; }
   .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 8rem 3rem 3rem; }
-  .hero-inner { max-width: 1100px; width: 100%; }
+  .hero-inner { max-width: 1100px; width: 100%; overflow: visible; }
   .hero-video-row { display: flex; justify-content: center; margin-bottom: 3rem; padding: 0 8%; }
   .hero-reel { width: 100%; max-width: 900px; }
   .hero-socials { display: flex; justify-content: flex-end; gap: 1.25rem; padding-top: 0.75rem; }
   .hero-socials a { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); transition: color 0.3s ease; }
   .hero-socials a:hover { color: var(--cream); }
   .hero-socials svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-  .hero-bottom-left { text-align: left; max-width: 600px; }
-  .hero-name { font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 1rem; white-space: nowrap; }
+  .hero-bottom-left { text-align: left; max-width: 600px; overflow: visible; }
+  .hero-name { font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 1rem; white-space: nowrap; overflow: visible; }
   .hero-name .last { color: var(--sky-blue); }
   .hero-name .char-w { font-family: 'Daniel', cursive; font-size: 0.75em; }
   .hero-name .char-il { font-family: 'Scruf', cursive; font-size: 0.5em; }
   .hero-name .char-l2 { font-family: 'Inkfree', cursive; font-size: 0.5em; }
-  .hero-name .char-cahill { font-family: 'Velocette', cursive; font-size: 1.25em; }
+  .hero-name .char-cahill { font-family: 'Velocette', cursive; font-size: 1.25em; padding-left: 0.15em; display: inline-block; }
   .reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); opacity: 0.45; transition: opacity 0.4s ease; }
   .reel-frame:hover, .reel-frame.playing { opacity: 1; }
   .reel-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
