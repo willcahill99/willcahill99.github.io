@@ -9,7 +9,7 @@
 <style>
   :root {
     --cream: #F5F0E6;
-    --sand: #C8B89A;
+    --sand: #D4B87A;
     --sand-light: #D9CBAF;
     --sand-dark: #A89878;
     --slate-blue: #3B5468;
@@ -111,13 +111,13 @@
   .about-text p { font-size: 1.02rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
   .skills-heading { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sky-blue); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-top: 1rem; }
   .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
-  .skill-tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.9rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); transition: all 0.25s; }
+  .skill-tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.9rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: var(--sand); background: rgba(255,255,255,0.04); transition: all 0.25s; }
   .skill-tag:hover { border-color: var(--sky-blue); color: var(--cream); }
   .education-block { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); border-left: 3px solid var(--steel-blue); }
   .edu-degree { font-family: var(--font-display); font-size: 1rem; margin-bottom: 0.25rem; color: var(--cream); }
-  .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 0.15rem; }
-  .edu-note { font-family: 'Biro Script', cursive; font-size: 0.85rem; color: rgba(255,255,255,0.35); font-style: normal; margin-bottom: 1rem; }
-  .edu-sub { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); margin-bottom: 0.5rem; }
+  .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--sand); margin-bottom: 0.15rem; }
+  .edu-note { font-family: 'Biro Script', cursive; font-size: 0.85rem; color: var(--sand); font-style: normal; margin-bottom: 1rem; }
+  .edu-sub { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--sand); margin-bottom: 0.5rem; }
   .skills-edu-row { display: flex; gap: 3rem; align-items: flex-start; }
   .skills-edu-row .education-block { flex: 0 0 45%; min-width: 0; }
   .skills-col { flex: 1 1 0; min-width: 0; }
@@ -134,10 +134,10 @@
   .project-video .reel-play svg { width: 18px; height: 18px; }
   .project-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.2rem; }
   .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel-blue); }
-  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--light-gray); flex-shrink: 0; }
-  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; }
-  .project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; }
-  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--mid-gray); }
+  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--steel-blue); flex-shrink: 0; text-shadow: 0 0 6px rgba(255,255,255,0.5); }
+  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; color: var(--charcoal); text-shadow: 0 0 6px rgba(255,255,255,0.5); }
+  .project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; text-shadow: 0 0 6px rgba(255,255,255,0.5); }
+  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--charcoal); text-shadow: 0 0 6px rgba(255,255,255,0.5); }
   .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--sand); }
   .timeline-item { padding-bottom: 2.75rem; position: relative; }
