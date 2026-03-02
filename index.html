@@ -118,6 +118,10 @@
   .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 0.15rem; }
   .edu-note { font-family: 'Biro Script', cursive; font-size: 0.85rem; color: rgba(255,255,255,0.35); font-style: normal; margin-bottom: 1rem; }
   .edu-sub { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); margin-bottom: 0.5rem; }
+  .skills-edu-row { display: flex; gap: 3rem; align-items: flex-start; }
+  .skills-edu-row .education-block { flex: 0 0 auto; min-width: 0; max-width: fit-content; padding-right: 8rem; }
+  .skills-col { flex: 1 1 0; min-width: 0; }
+  .about-skills-full { padding: 0 3rem 3rem; }
   .work-intro { font-size: 1.02rem; line-height: 1.75; color: var(--mid-gray); margin-bottom: 4rem; }
   .project-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .project-card { position: relative; }
@@ -201,6 +205,9 @@
     #about::before { background: rgba(15,14,13,0.6); }
     .about-layout { justify-content: stretch; }
     .about-content-right { max-width: 100%; }
+    .skills-edu-row { flex-direction: column; }
+    .skills-edu-row .education-block { width: 100%; }
+    .about-skills-full { padding: 0 1.5rem 2rem; }
     #about .section-inner { padding-left: 0; padding-right: 0; }
     .project-grid-2col { grid-template-columns: 1fr; }
     .gallery-viewer { flex-direction: column; height: auto; }
@@ -254,29 +261,33 @@
       <div class="about-layout">
         <div class="about-content-right">
           <div class="about-text fade-up stagger-2">
-            <p>My love of editing grew from my love of storytelling and problem solving. I thrive on the thrill of a well paced montage or a cut that brings new meaning to the shots being connected. Working on community focused documentaries, branded social content, music videos, or sketch comedy, I&#39;ve learned the best way to get experience cutting, coloring, or compositing is to shoot something first. This mentality has allowed me to develop my skills as a producer and director both in my work with X-15 and independently.</p>
-            <p>As a Media Asset Manager at X-15, I have the pleasure of working on Best Buy, Kohls, General Motors, and He Gets Us campaigns. What I bring to the table is versatility and a solid work ethic as I manage communications between clients and production/post partners; assemble pitch decks, pre-production books, schedules and asset tracking matrixes; serve as on set DIT; manage the storage, handoffs, and proper care of client assets; shoot behind-the-scenes photos and videos on set; edit photos and videos for award submission campaigns and social posts; and lastly, oversee quality control, final delivery and archival of digital, broadcast and social spots. Consider visiting <a href="https://x-15.info" target="_blank" style="color: var(--sky-blue); text-decoration: underline;">x-15.info</a> to see the website I recently built and to learn more about the Special Ops of Production.</p>
-            <p>Outside of work I enjoy standing on moving boards (the surf, skate, or snow variety), playing tennis or guitar (parallel or perpendicular strings for today?), and exploring places familiar or foreign, urban or wild (usually imagining I were a cowboy with my trusty mirrorless six-shooter). So scroll on to check out some of my favorite projects and if you&#39;d like to talk, let&#39;s connect!</p>
+            <p>My passion for editing grew from my love of storytelling and problem solving. I&#39;m always pursuing the thrill of a well paced montage or a cut that brings new meaning to 2 distinct visuals. Working on community focused documentaries, branded social content, music videos, or sketch comedy, I&#39;ve learned the best way to get experience cutting, coloring, or compositing is to shoot something. I use my continuing experience as a producer and director to develop my skills in post production.</p>
+            <p>As X-15&#39;s Media Asset Manager, I&#39;m a multitool for all things technical, post production, design, and client facing. On campaigns of all scopes, for Best Buy, Kohls, General Motors, and He Gets Us, what I bring to the table is my versatility and solid work ethic. I manage communications between clients and production/post partners; assemble pitch decks, pre-production books, schedules and asset tracking matrixes; serve as on set DIT; manage the storage, handoffs, and proper care of client assets; shoot behind-the-scenes photos and videos on set; edit photos and videos for award submission campaigns and social posts; and lastly, oversee quality control, final delivery and archival of digital, broadcast and social spots. Consider visiting <a href="https://x-15.info" target="_blank" style="color: var(--sky-blue); text-decoration: underline;">x-15.info</a> to see the website I recently built and to learn more about the Special Ops of Production.</p>
+            <p>Outside of work I enjoy standing on moving boards (the surf, skate, or snow variety), playing tennis or guitar (parallel or perpendicular strings for today?), and exploring places familiar or foreign, urban or wild (usually imagining I were a cowboy with my trusty mirrorless six-shooter). Scroll on to check out some of my favorite projects and if you&#39;d like to talk, let&#39;s connect!</p>
           </div>
-          <div class="fade-up stagger-3">
-            <div class="skills-heading">Tools &amp; Skills</div>
-            <div class="skills-grid">
-              <span class="skill-tag">Premiere Pro</span><span class="skill-tag">DaVinci Resolve</span>
-              <span class="skill-tag">Color Grading</span><span class="skill-tag">Motion Graphics</span>
-              <span class="skill-tag">Photoshop</span><span class="skill-tag">Fusion</span>
-              <span class="skill-tag">Asset Delivery &amp; Archival</span><span class="skill-tag">Client Communication</span>
-              <span class="skill-tag">Cinematography</span><span class="skill-tag">Compositing</span>
-              <span class="skill-tag">Social Media</span><span class="skill-tag">Photography</span>
-              <span class="skill-tag">File Management</span><span class="skill-tag">Web Design</span>
-            </div>
-            <div class="education-block">
-              <div class="edu-school">Syracuse University &#183; 2018-2022</div>
-              <div class="edu-note">Renee Crown Honors Program</div>
-              <div class="edu-degree">B.S. Television Radio Film</div>
-              <div class="edu-sub">Newhouse</div>
-              <div class="edu-degree">B.S. Information Mgmt &amp; Technology</div>
-              <div class="edu-sub">iSchool</div>
-            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-skills-full fade-up stagger-3">
+      <div class="skills-edu-row">
+        <div class="education-block">
+          <div class="edu-school">Syracuse University &#183; 2018-2022</div>
+          <div class="edu-note">Renee Crown Honors Program</div>
+          <div class="edu-degree">B.S. Television Radio Film</div>
+          <div class="edu-sub">Newhouse</div>
+          <div class="edu-degree">B.S. Information Mgmt &amp; Technology</div>
+          <div class="edu-sub">iSchool</div>
+        </div>
+        <div class="skills-col">
+          <div class="skills-grid">
+            <span class="skill-tag">Premiere Pro</span><span class="skill-tag">DaVinci Resolve</span>
+            <span class="skill-tag">Color Grading</span><span class="skill-tag">Motion Graphics</span>
+            <span class="skill-tag">Photoshop</span><span class="skill-tag">Fusion</span>
+            <span class="skill-tag">Asset Delivery &amp; Archival</span><span class="skill-tag">Client Communication</span>
+            <span class="skill-tag">Cinematography</span><span class="skill-tag">Compositing</span>
+            <span class="skill-tag">Social Media</span><span class="skill-tag">Photography</span>
+            <span class="skill-tag">File Management</span><span class="skill-tag">Web Design</span>
           </div>
         </div>
       </div>
