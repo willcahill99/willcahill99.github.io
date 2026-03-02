@@ -47,9 +47,10 @@
   #work .section-pad-heavy { padding-top: 16rem; }
   #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }
   #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }
-  .icon-nav { position: fixed; top: 0; right: 0; z-index: 1000; display: flex; align-items: center; padding: 1.25rem 1.75rem; pointer-events: none; mix-blend-mode: difference; }
-  .icon-nav-items { display: flex; align-items: center; gap: 0; flex-direction: row-reverse; filter: drop-shadow(0 0 0 transparent); transition: filter 0.4s ease; }
-  .icon-nav-items.open { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)) drop-shadow(0 8px 24px rgba(0,0,0,0.3)); }
+  .icon-nav-btn-wrap { position: fixed; top: 0; right: 0; z-index: 1001; padding: 1.25rem 1.75rem; mix-blend-mode: difference; pointer-events: none; }
+  .icon-nav-icons-wrap { position: fixed; top: 0; right: 0; z-index: 1000; padding: 1.25rem 1.75rem; pointer-events: none; display: flex; align-items: center; padding-right: calc(1.75rem + 59px + 0.75rem); }
+  .icon-nav-items { display: flex; align-items: center; gap: 0; flex-direction: row-reverse; transition: filter 0.4s ease; }
+  .icon-nav-items.open { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)) drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
   .icon-nav-items .icon-nav-link { pointer-events: none; }
   .icon-nav-items.open .icon-nav-link { pointer-events: auto; opacity: 1; transform: translateX(0); }
   .icon-nav-link { display: flex; align-items: center; justify-content: center; width: 53px; height: 53px; position: relative; opacity: 0; transform: translateX(30px); transition: opacity 0.35s ease, transform 0.35s ease; cursor: pointer; text-decoration: none; }
@@ -136,10 +137,12 @@
   .project-video .reel-play svg { width: 18px; height: 18px; }
   .project-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.2rem; }
   .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel-blue); }
-  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--steel-blue); flex-shrink: 0; text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4); }
-  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--charcoal); text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4); }
-  .project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4); }
-  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--charcoal); text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4); }
+  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--steel-blue); flex-shrink: 0; }
+  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--charcoal); }
+  .project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; }
+  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--charcoal); }
+  .project-card::after { content: ''; position: absolute; left: -8%; right: -8%; top: -5%; bottom: -15%; background: linear-gradient(to bottom, transparent 40%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.6) 58%, rgba(255,255,255,0.8) 65%, rgba(255,255,255,0.85) 72%, rgba(255,255,255,0.75) 80%, rgba(255,255,255,0.55) 87%, rgba(255,255,255,0.3) 93%, rgba(255,255,255,0.1) 97%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); pointer-events: none; z-index: 0; }
+  .project-card > * { position: relative; z-index: 1; }
   .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--sand); }
   .timeline-item { padding-bottom: 2.75rem; position: relative; }
@@ -223,7 +226,12 @@
 </style>
 </head>
 <body>
-<div class="icon-nav" id="iconNav">
+<div class="icon-nav-btn-wrap" id="iconNavBtn">
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <img src="images/icons/Menu.png" alt="Menu">
+  </button>
+</div>
+<div class="icon-nav-icons-wrap" id="iconNavIcons">
   <div class="icon-nav-items" id="iconNavItems">
     <a href="#contact" class="icon-nav-link"><img src="images/icons/Connect.png" alt="Connect"><span class="icon-nav-label">Connect</span></a>
     <a href="#photos" class="icon-nav-link"><img src="images/icons/Photos.png" alt="Photos"><span class="icon-nav-label">Photos</span></a>
@@ -231,9 +239,7 @@
     <a href="#work" class="icon-nav-link"><img src="images/icons/play2.png" alt="Work"><span class="icon-nav-label">Work</span></a>
     <a href="#about" class="icon-nav-link"><img src="images/icons/About.png" alt="About"><span class="icon-nav-label">About</span></a>
   </div>
-  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-    <img src="images/icons/Menu.png" alt="Menu">
-  </button>
+</div>
 </div>
 <div id="lead" class="section">
   <section class="hero">
@@ -478,7 +484,7 @@
   function closeNav() { isNavOpen = false; menuToggle.classList.remove('open'); iconNavItems.classList.remove('open'); }
   menuToggle.addEventListener('click', function(e) { e.stopPropagation(); if (isNavOpen) { closeNav(); } else { openNav(); } });
   iconNavItems.querySelectorAll('.icon-nav-link').forEach(function(link) { link.addEventListener('click', function() { closeNav(); }); });
-  document.addEventListener('click', function(e) { if (isNavOpen && !document.getElementById('iconNav').contains(e.target)) { closeNav(); } });
+  document.addEventListener('click', function(e) { if (isNavOpen && !document.getElementById('iconNavIcons').contains(e.target) && !document.getElementById('iconNavBtn').contains(e.target)) { closeNav(); } });
   document.querySelectorAll('.sticky-bg img').forEach(function(img) {
     function checkFallback() {
       var naturalRatio = img.naturalHeight / img.naturalWidth;
