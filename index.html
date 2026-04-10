@@ -6,7 +6,228 @@
 <title>Will Cahill — Producer / Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --cream: #F5F0E6;
+    --sand: #D4B87A;
+    --sand-light: #D9CBAF;
+    --sand-dark: #A89878;
+    --slate-blue: #3B5468;
+    --steel-blue: #5A7D95;
+    --sky-blue: #7CA0B8;
+    --pale-blue: #A8C4D4;
+    --deep-blue: #1E3344;
+    --charcoal: #1C1917;
+    --dark: #0F0E0D;
+    --mid-gray: #6B635A;
+    --light-gray: #9E958A;
+    --chrome: #C4BCB0;
+    --font-display: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'Space Mono', 'Courier New', monospace;
+    --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+  }
+  @font-face { font-family: 'Biro Script'; src: url('fonts/Biro_Script_reduced.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Daniel'; src: url('fonts/daniel.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Scruf'; src: url('fonts/Scruf-Regular.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Inkfree'; src: url('fonts/Inkfree.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'Velocette'; src: url('fonts/Velocette.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { background: var(--dark); color: var(--charcoal); font-family: var(--font-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 200px; }
+  .section { position: relative; background-size: cover; background-position: center; background-repeat: no-repeat; }
+  .section > * { position: relative; z-index: 1; }
+  .sticky-section { position: relative; }
+  .sticky-bg { position: sticky; top: 0; width: 100%; z-index: 0; overflow: hidden; }
+  .sticky-bg img { display: block; width: 100%; height: auto; }
+  .sticky-bg.fallback-cover { height: 100vh; }
+  .sticky-bg.fallback-cover img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .sticky-content { position: relative; z-index: 1; }
+  #work .sticky-content { margin-top: calc(-2000 / 1475 * 100vw); }
+  #work .section-pad-heavy { padding-top: 16rem; }
+  #experience .sticky-content { margin-top: calc(-1506 / 2000 * 100vw); }
+  #photos .sticky-content { margin-top: calc(-2000 / 1939 * 100vw); }
+  .icon-nav-btn-wrap { position: fixed; top: 0; right: 0; z-index: 1001; padding: 1.25rem 1.75rem; mix-blend-mode: difference; pointer-events: none; }
+  .icon-nav-icons-wrap { position: fixed; top: 0; right: 0; z-index: 1000; padding: 1.25rem 1.75rem; pointer-events: none; display: flex; align-items: center; padding-right: calc(1.75rem + 59px + 0.75rem); }
+  .icon-nav-items { display: flex; align-items: center; gap: 0; flex-direction: row-reverse; transition: filter 0.4s ease; }
+  .icon-nav-items.open { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)) drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
+  .icon-nav-items .icon-nav-link { pointer-events: none; }
+  .icon-nav-items.open .icon-nav-link { pointer-events: auto; opacity: 1; transform: translateX(0); }
+  .icon-nav-link { display: flex; align-items: center; justify-content: center; width: 53px; height: 53px; position: relative; opacity: 0; transform: translateX(30px); transition: opacity 0.35s ease, transform 0.35s ease; cursor: pointer; text-decoration: none; }
+  .icon-nav-items.open .icon-nav-link:nth-child(1) { transition-delay: 0.06s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(2) { transition-delay: 0.12s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(3) { transition-delay: 0.18s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(4) { transition-delay: 0.24s; }
+  .icon-nav-items.open .icon-nav-link:nth-child(5) { transition-delay: 0.30s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(5) { transition-delay: 0.04s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(4) { transition-delay: 0.08s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(3) { transition-delay: 0.12s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(2) { transition-delay: 0.16s; }
+  .icon-nav-items:not(.open) .icon-nav-link:nth-child(1) { transition-delay: 0.20s; }
+  .icon-nav-link img { width: 31px; height: 31px; object-fit: contain; transition: transform 0.25s ease; }
+  .icon-nav-link:hover img { transform: scale(1.2); }
+  .icon-nav-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); font-family: 'Biro Script', cursive; font-size: 1.0rem; letter-spacing: 0.08em; text-transform: none; color: white; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.25s ease; padding-top: 6px; }
+  .icon-nav-link:hover .icon-nav-label { opacity: 1; }
+  .menu-toggle { width: 59px; height: 59px; cursor: pointer; background: none; border: none; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); margin-left: 0.75rem; pointer-events: auto; }
+  .menu-toggle.open { transform: rotate(90deg); }
+  .menu-toggle img { width: 45px; height: 45px; object-fit: contain; }
+  #lead { background-image: url('images/LeadPrepV3.webp'); background-color: black; background-size: 100% auto; background-position: center top; min-height: 100vh; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 8rem 3rem 3rem; overflow: visible; }
+  .hero-inner { max-width: 1100px; width: 100%; overflow: visible; }
+  .hero-video-row { display: flex; justify-content: center; margin-bottom: 3rem; padding: 0 8%; }
+  .hero-reel { width: 100%; max-width: 900px; }
+  .hero-socials { display: flex; justify-content: flex-end; gap: 1.25rem; padding-top: 0.75rem; }
+  .hero-socials a { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); transition: color 0.3s ease; }
+  .hero-socials a:hover { color: var(--cream); }
+  .hero-socials svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .hero-bottom-left { text-align: left; max-width: 600px; overflow: visible; margin-top: -5rem; }
+  .hero-name { font-family: var(--font-display); font-size: clamp(4rem,10vw,8rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.02em; color: var(--cream); margin-bottom: 1rem; white-space: nowrap; overflow: visible; padding-bottom: 0.35em; }
+  .hero-name .last { color: var(--sky-blue); }
+  .hero-name .char-w { font-family: 'Daniel', cursive; font-size: 0.75em; }
+  .hero-name .char-il { font-family: 'Scruf', cursive; font-size: 0.5em; }
+  .hero-name .char-l2 { font-family: 'Inkfree', cursive; font-size: 0.5em; }
+  .hero-name .char-cahill { font-family: 'Velocette', cursive; font-size: 1.25em; padding-left: 0.15em; display: inline-block; position: relative; }
+  .reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); opacity: 0.45; transition: opacity 0.4s ease; }
+  .reel-frame:hover, .reel-frame.playing { opacity: 1; }
+  .reel-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
+  .reel-play { width: 72px; height: 72px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; transition: all 0.35s ease; }
+  .reel-frame:hover .reel-play { border-color: var(--sky-blue); transform: scale(1.08); background: rgba(90,125,149,0.2); }
+  .reel-play svg { width: 24px; height: 24px; fill: white; margin-left: 3px; }
+  .embed-note { position: absolute; bottom: 0.75rem; right: 0.75rem; font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); z-index: 2; }
+  .hero-tagline { font-family: 'Biro Script', cursive; font-size: 0.145em; font-weight: 300; line-height: 1.4; color: rgba(255,255,255,0.55); white-space: nowrap; font-style: normal; position: absolute; bottom: -1em; right: 3.5em; }
+  .section-pad-heavy { padding: 10rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--steel-blue); }
+  .section-title { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1rem; }
+  .section-title em { font-family: 'Biro Script', cursive; font-style: normal; color: var(--steel-blue); }
+  .dark-text { color: var(--cream); }
+  .dark-text .section-label { color: var(--sky-blue); }
+  .dark-text .section-title { color: var(--cream); }
+  .dark-text .section-title em { color: var(--sky-blue); }
+  #about { background-image: url('images/AboutPrepV3.webp'); background-color: black; background-size: 100% auto; background-position: center top; }
+  #about .section-pad-heavy { padding-top: 6rem; padding-bottom: 2rem; }
+  #about .section-inner { max-width: none; padding-left: calc(50vw - 3rem); padding-right: 1.8rem; }
+  #about::before { content: ''; position: absolute; inset: 0; background: rgba(15,14,13,0.0); z-index: 0; pointer-events: none; }
+  .about-layout { display: flex; justify-content: flex-start; margin-top: 0; }
+  .about-content-right { max-width: none; width: 100%; padding-right: 0; }
+  .about-text p { font-size: 1.02rem; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
+  .skills-heading { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sky-blue); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-top: 1rem; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .skill-tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.9rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; color: var(--sand); background: rgba(255,255,255,0.04); transition: all 0.25s; }
+  .skill-tag:hover { border-color: var(--sky-blue); color: var(--cream); }
+  .education-block { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); border-left: 3px solid var(--steel-blue); }
+  .edu-degree { font-family: var(--font-display); font-size: 1rem; margin-bottom: 0.25rem; color: var(--cream); }
+  .edu-school { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--sand); margin-bottom: 0.15rem; }
+  .edu-note { font-family: 'Biro Script', cursive; font-size: 0.85rem; color: var(--sand); font-style: normal; margin-bottom: 1rem; }
+  .edu-sub { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--sand); margin-bottom: 0.5rem; }
+  .skills-edu-row { display: flex; gap: 3rem; align-items: flex-start; }
+  .skills-edu-row .education-block { flex: 0 0 45%; min-width: 0; }
+  .skills-col { flex: 1 1 0; min-width: 0; }
+  .about-skills-full { padding: 0 3rem 14rem; }
+  .work-intro { font-size: 1.02rem; line-height: 1.75; color: var(--mid-gray); margin-bottom: 4rem; }
+  .project-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .project-card { position: relative; }
+  .project-video { aspect-ratio: 16/9; background: var(--dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 1.2rem; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease; opacity: 0.45; }
+  .project-card:hover .project-video { transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,0.2); opacity: 1; }
+  .project-video.playing { opacity: 1; }
+  .project-video::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
+  .project-video .reel-play { width: 54px; height: 54px; opacity: 0.65; transition: all 0.3s; }
+  .project-card:hover .project-video .reel-play { opacity: 1; border-color: var(--sky-blue); background: rgba(90,125,149,0.15); }
+  .project-video .reel-play svg { width: 18px; height: 18px; }
+  .project-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.2rem; }
+  .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel-blue); }
+  .project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--steel-blue); flex-shrink: 0; }
+  .project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--charcoal); }
+  .project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; }
+  .project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--charcoal); }
+  .project-card::after { display: none; }
+  .project-grid-2col { position: relative; }
+  .project-grid-2col::before, .project-grid-2col::after { content: ''; position: absolute; top: 0; bottom: 0; pointer-events: none; z-index: 0; background: rgba(255,255,255,0.7); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 5%, black 11%, black 92%, transparent 100%), linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%); -webkit-mask-composite: destination-in; mask-image: linear-gradient(to bottom, transparent 0%, transparent 5%, black 11%, black 92%, transparent 100%), linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%); mask-composite: intersect; }
+  .project-grid-2col::before { left: -6%; width: calc(50% - 1.25rem + 9%); }
+  .project-grid-2col::after { right: -6%; width: calc(50% - 1.25rem + 9%); }
+  .project-card > * { position: relative; z-index: 1; }
+  .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--sand); }
+  .timeline-item { padding-bottom: 2.75rem; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 6px; width: 9px; height: 9px; background: var(--slate-blue); border-radius: 50%; transform: translateX(-4px); box-shadow: 0 0 0 3px rgba(59,84,104,0.12); }
+  .timeline-year { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--charcoal); margin-bottom: 0.4rem; }
+  .timeline-role { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--charcoal); margin-bottom: 0.2rem; }
+  .timeline-company { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--charcoal); margin-bottom: 0.65rem; }
+  .timeline-desc { font-size: 0.88rem; line-height: 1.7; color: var(--charcoal); max-width: 520px; }
+  .gallery-segment { margin-bottom: 6rem; }
+  .gallery-segment:last-child { margin-bottom: 0; }
+  .gallery-segment-label { font-family: 'Biro Script', cursive; font-size: 2rem; font-weight: 400; color: var(--charcoal); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(59,84,104,0.15); }
+  #photos .section-label { justify-content: flex-end; }
+  #photos { margin-top: -2px; }
+  #photos .section-label::before { order: 2; }
+  #photos .gallery-segment-label { text-align: right; }
+  .gallery-viewer { display: flex; gap: 1rem; height: 520px; }
+  .gallery-thumbs { width: 120px; flex-shrink: 0; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 0.5rem; padding-right: 0.5rem; scrollbar-width: thin; scrollbar-color: var(--chrome) transparent; }
+  .gallery-thumbs::-webkit-scrollbar { width: 4px; }
+  .gallery-thumbs::-webkit-scrollbar-track { background: transparent; }
+  .gallery-thumbs::-webkit-scrollbar-thumb { background: var(--chrome); border-radius: 2px; }
+  .gallery-thumb { width: 100%; aspect-ratio: 1; flex-shrink: 0; background: rgba(0,0,0,0.06); border-radius: 3px; cursor: pointer; border: 2px solid transparent; transition: all 0.25s ease; position: relative; overflow: hidden; }
+  .gallery-thumb:hover { border-color: var(--chrome); }
+  .gallery-thumb.active { border-color: var(--slate-blue); }
+  .gallery-thumb-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome); }
+  .gallery-main { flex: 1; background: rgba(0,0,0,0.04); border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .gallery-main-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome); }
+  .gallery-main-placeholder svg { width: 36px; height: 36px; stroke: var(--chrome); fill: none; stroke-width: 1.2; }
+  #contact { background-image: url('images/ContactPrepV2.webp'); background-color: transparent; background-size: 100% auto; background-position: center top; background-repeat: no-repeat; min-height: calc(2000 / 1410 * 100vw); z-index: 2; position: relative; margin-top: calc(-95 / 2000 * 100vw); }
+  .contact-full { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10rem 3rem; }
+  .contact-centered { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 500px; width: 100%; }
+  .contact-headline { font-family: 'Biro Script', cursive; font-size: clamp(2.07rem,4vw,3.22rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap; }
+  .contact-headline .line-blue { color: #ffffff; display: block; }
+  .contact-headline .line-spacer { display: block; height: 8em; }
+  .contact-headline .line-sand { font-family: 'Biro Script', cursive; color: var(--sand); display: block; font-style: normal; }
+  .contact-links-center { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 2.5rem; }
+  .contact-link { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); transition: all 0.3s; }
+  .contact-link:hover { color: var(--steel-blue); }
+  .contact-link svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  footer { position: relative; z-index: 10; background: var(--dark); color: rgba(255,255,255,0.35); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  footer a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.3s; }
+  footer a:hover { color: var(--sky-blue); }
+  .footer-links { display: flex; gap: 2rem; }
+  .fade-up { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.hidden { opacity: 0; transform: translateY(28px); }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  @media (max-width: 1024px) {
+    .section-pad-heavy { padding: 8rem 2rem; }
+    .hero { padding: 4rem 2rem 3rem; }
+    .gallery-viewer { height: 420px; }
+    .gallery-thumbs { width: 100px; }
+  }
+  @media (max-width: 768px) {
+    .icon-nav { padding: 1rem 1rem; }
+    .menu-toggle img { width: 39px; height: 39px; }
+    .icon-nav-link img { width: 25px; height: 25px; }
+    .icon-nav-link { width: 45px; height: 45px; }
+    .section-pad-heavy { padding: 7rem 1.5rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .hero-name { white-space: normal; }
+    .hero-video-row { padding: 0; }
+    #about::before { background: rgba(15,14,13,0.6); }
+    .about-layout { justify-content: stretch; }
+    .about-content-right { max-width: 100%; }
+    .skills-edu-row { flex-direction: column; }
+    .skills-edu-row .education-block { width: 100%; }
+    .about-skills-full { padding: 0 1.5rem 2rem; }
+    #about .section-inner { padding-left: 0; padding-right: 0; }
+    .project-grid-2col { grid-template-columns: 1fr; }
+    .gallery-viewer { flex-direction: column; height: auto; }
+    .gallery-thumbs { width: 100%; flex-direction: row; overflow-x: auto; overflow-y: hidden; height: 80px; padding-right: 0; padding-bottom: 0.5rem; }
+    .gallery-thumb { width: 70px; aspect-ratio: 1; flex-shrink: 0; }
+    .gallery-main { min-height: 280px; }
+    .contact-full { min-height: 100vh; padding: 7rem 1.5rem; }
+    .contact-headline { white-space: normal; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
 <div class="icon-nav-btn-wrap" id="iconNavBtn">
@@ -23,6 +244,7 @@
     <a href="#about" class="icon-nav-link"><img src="images/icons/About.png" alt="About"><span class="icon-nav-label">About</span></a>
   </div>
 </div>
+</div>
 <div id="lead" class="section">
   <section class="hero">
     <div class="hero-inner">
@@ -34,7 +256,7 @@
           </div>
           <div class="hero-socials">
             <a href="https://instagram.com/willcahill" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-            <a href="/cdn-cgi/l/email-protection#a5d2ccc9c9c6c4cdccc9c99595e5c2c8c4ccc98bc6cac8" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+            <a href="mailto:willcahill00@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
             <a href="https://linkedin.com/in/will-cahill/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
           </div>
         </div>
@@ -180,58 +402,156 @@
     <div class="section-pad-heavy">
       <div class="section-inner">
         <span class="section-label fade-up">Photography</span>
+
+        <!-- ── BTS ── -->
         <div class="gallery-segment fade-up">
-          <div class="gallery-segment-label">On Set + BTS</div>
+          <div class="gallery-segment-label">Behind the Scenes</div>
           <div class="gallery-viewer">
             <div class="gallery-thumbs">
-              <div class="gallery-thumb active" data-gallery="1" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-              <div class="gallery-thumb" data-gallery="1" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb active" data-gallery="1" data-index="0" style="background-image:url('images/bts/IMG_3534_A.webp')"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="1" style="background-image:url('images/bts/IMG_3565_A.webp')"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="2" style="background-image:url('images/bts/IMG_3570_A.webp')"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="3" style="background-image:url('images/bts/IMG_9441_A.webp')"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="4" style="background-image:url('images/bts/IMG_9447_A.webp')"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="5" style="background-image:url('images/bts/IMG_9460_A.webp')"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="6" style="background-image:url('images/bts/IMG_9486_A.webp')"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="7" style="background-image:url('images/bts/IMG_9540_A.webp')"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="8" style="background-image:url('images/bts/P1230513_A.webp')"><div class="gallery-thumb-placeholder">09</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="9" style="background-image:url('images/bts/P1230542_A.webp')"><div class="gallery-thumb-placeholder">10</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="10" style="background-image:url('images/bts/P1230554_A.webp')"><div class="gallery-thumb-placeholder">11</div></div>
+              <div class="gallery-thumb" data-gallery="1" data-index="11" style="background-image:url('images/bts/P1230592_A.webp')"><div class="gallery-thumb-placeholder">12</div></div>
             </div>
             <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
           </div>
         </div>
+
+        <!-- ── EVENTS ── -->
         <div class="gallery-segment fade-up">
-          <div class="gallery-segment-label">Live Performance</div>
+          <div class="gallery-segment-label">Live Events</div>
           <div class="gallery-viewer">
             <div class="gallery-thumbs">
-              <div class="gallery-thumb active" data-gallery="2" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-              <div class="gallery-thumb" data-gallery="2" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb active" data-gallery="2" data-index="0" style="background-image:url('images/events/P1270827.webp')"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="1" style="background-image:url('images/events/P1280053.webp')"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="2" style="background-image:url('images/events/P1280567.webp')"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="3" style="background-image:url('images/events/WHC00008.webp')"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="4" style="background-image:url('images/events/WHC00046.webp')"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="5" style="background-image:url('images/events/WHC00097.webp')"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="6" style="background-image:url('images/events/WHC00119-Enhanced-NR.webp')"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="7" style="background-image:url('images/events/WHC00130.webp')"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="8" style="background-image:url('images/events/WHC00181.webp')"><div class="gallery-thumb-placeholder">09</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="9" style="background-image:url('images/events/WHC00284.webp')"><div class="gallery-thumb-placeholder">10</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="10" style="background-image:url('images/events/WHC00333_1.webp')"><div class="gallery-thumb-placeholder">11</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="11" style="background-image:url('images/events/WHC00440_1.webp')"><div class="gallery-thumb-placeholder">12</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="12" style="background-image:url('images/events/WHC00454.webp')"><div class="gallery-thumb-placeholder">13</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="13" style="background-image:url('images/events/WHC00503.webp')"><div class="gallery-thumb-placeholder">14</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="14" style="background-image:url('images/events/WHC00567.webp')"><div class="gallery-thumb-placeholder">15</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="15" style="background-image:url('images/events/WHC00771.webp')"><div class="gallery-thumb-placeholder">16</div></div>
+              <div class="gallery-thumb" data-gallery="2" data-index="16" style="background-image:url('images/events/WHC01549.webp')"><div class="gallery-thumb-placeholder">17</div></div>
             </div>
             <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
           </div>
         </div>
+
+        <!-- ── NATURE ── -->
         <div class="gallery-segment fade-up">
-          <div class="gallery-segment-label">What I Like to Do</div>
+          <div class="gallery-segment-label">Nature</div>
           <div class="gallery-viewer">
             <div class="gallery-thumbs">
-              <div class="gallery-thumb active" data-gallery="3" data-index="0"><div class="gallery-thumb-placeholder">01</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="1"><div class="gallery-thumb-placeholder">02</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="2"><div class="gallery-thumb-placeholder">03</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="3"><div class="gallery-thumb-placeholder">04</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="4"><div class="gallery-thumb-placeholder">05</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="5"><div class="gallery-thumb-placeholder">06</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="6"><div class="gallery-thumb-placeholder">07</div></div>
-              <div class="gallery-thumb" data-gallery="3" data-index="7"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb active" data-gallery="3" data-index="0" style="background-image:url('images/nature/IMG_1448.webp')"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="1" style="background-image:url('images/nature/IMG_1974.webp')"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="2" style="background-image:url('images/nature/IMG_2346.webp')"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="3" style="background-image:url('images/nature/IMG_3693.webp')"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="4" style="background-image:url('images/nature/IMG_3733.webp')"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="5" style="background-image:url('images/nature/IMG_3795.webp')"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="6" style="background-image:url('images/nature/IMG_3817.webp')"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="7" style="background-image:url('images/nature/IMG_5305.webp')"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="8" style="background-image:url('images/nature/IMG_9800.webp')"><div class="gallery-thumb-placeholder">09</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="9" style="background-image:url('images/nature/IMG_9804.webp')"><div class="gallery-thumb-placeholder">10</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="10" style="background-image:url('images/nature/IMG_9817.webp')"><div class="gallery-thumb-placeholder">11</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="11" style="background-image:url('images/nature/P1050901.webp')"><div class="gallery-thumb-placeholder">12</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="12" style="background-image:url('images/nature/P1310303.webp')"><div class="gallery-thumb-placeholder">13</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="13" style="background-image:url('images/nature/P1310334.webp')"><div class="gallery-thumb-placeholder">14</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="14" style="background-image:url('images/nature/P1310384.webp')"><div class="gallery-thumb-placeholder">15</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="15" style="background-image:url('images/nature/P1310389.webp')"><div class="gallery-thumb-placeholder">16</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="16" style="background-image:url('images/nature/P1310438.webp')"><div class="gallery-thumb-placeholder">17</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="17" style="background-image:url('images/nature/P1310440.webp')"><div class="gallery-thumb-placeholder">18</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="18" style="background-image:url('images/nature/P1310454.webp')"><div class="gallery-thumb-placeholder">19</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="19" style="background-image:url('images/nature/P1310540.webp')"><div class="gallery-thumb-placeholder">20</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="20" style="background-image:url('images/nature/P1310566.webp')"><div class="gallery-thumb-placeholder">21</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="21" style="background-image:url('images/nature/WHC00006.webp')"><div class="gallery-thumb-placeholder">22</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="22" style="background-image:url('images/nature/WHC00009.webp')"><div class="gallery-thumb-placeholder">23</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="23" style="background-image:url('images/nature/WHC00012.webp')"><div class="gallery-thumb-placeholder">24</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="24" style="background-image:url('images/nature/WHC00018.webp')"><div class="gallery-thumb-placeholder">25</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="25" style="background-image:url('images/nature/WHC00020.webp')"><div class="gallery-thumb-placeholder">26</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="26" style="background-image:url('images/nature/WHC00028.webp')"><div class="gallery-thumb-placeholder">27</div></div>
+              <div class="gallery-thumb" data-gallery="3" data-index="27" style="background-image:url('images/nature/WHC00038.webp')"><div class="gallery-thumb-placeholder">28</div></div>
             </div>
             <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
           </div>
         </div>
+
+        <!-- ── URBAN ── -->
+        <div class="gallery-segment fade-up">
+          <div class="gallery-segment-label">Urban</div>
+          <div class="gallery-viewer">
+            <div class="gallery-thumbs">
+              <div class="gallery-thumb active" data-gallery="4" data-index="0" style="background-image:url('images/urban/IMG_1454.webp')"><div class="gallery-thumb-placeholder">01</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="1" style="background-image:url('images/urban/IMG_1458.webp')"><div class="gallery-thumb-placeholder">02</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="2" style="background-image:url('images/urban/IMG_2364.webp')"><div class="gallery-thumb-placeholder">03</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="3" style="background-image:url('images/urban/IMG_2370.webp')"><div class="gallery-thumb-placeholder">04</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="4" style="background-image:url('images/urban/IMG_2371.webp')"><div class="gallery-thumb-placeholder">05</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="5" style="background-image:url('images/urban/IMG_4228.webp')"><div class="gallery-thumb-placeholder">06</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="6" style="background-image:url('images/urban/IMG_4230.webp')"><div class="gallery-thumb-placeholder">07</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="7" style="background-image:url('images/urban/IMG_4232.webp')"><div class="gallery-thumb-placeholder">08</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="8" style="background-image:url('images/urban/IMG_9820.webp')"><div class="gallery-thumb-placeholder">09</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="9" style="background-image:url('images/urban/P1220601.webp')"><div class="gallery-thumb-placeholder">10</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="10" style="background-image:url('images/urban/P1220941.webp')"><div class="gallery-thumb-placeholder">11</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="11" style="background-image:url('images/urban/P1230685-Enhanced.webp')"><div class="gallery-thumb-placeholder">12</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="12" style="background-image:url('images/urban/P1230822.webp')"><div class="gallery-thumb-placeholder">13</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="13" style="background-image:url('images/urban/P1240044.webp')"><div class="gallery-thumb-placeholder">14</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="14" style="background-image:url('images/urban/P1240259.webp')"><div class="gallery-thumb-placeholder">15</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="15" style="background-image:url('images/urban/P1240264.webp')"><div class="gallery-thumb-placeholder">16</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="16" style="background-image:url('images/urban/P1240538.webp')"><div class="gallery-thumb-placeholder">17</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="17" style="background-image:url('images/urban/P1240618.webp')"><div class="gallery-thumb-placeholder">18</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="18" style="background-image:url('images/urban/P1290181.webp')"><div class="gallery-thumb-placeholder">19</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="19" style="background-image:url('images/urban/P1290182.webp')"><div class="gallery-thumb-placeholder">20</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="20" style="background-image:url('images/urban/P1290185.webp')"><div class="gallery-thumb-placeholder">21</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="21" style="background-image:url('images/urban/P1300419.webp')"><div class="gallery-thumb-placeholder">22</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="22" style="background-image:url('images/urban/P1300466.webp')"><div class="gallery-thumb-placeholder">23</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="23" style="background-image:url('images/urban/P1300829.webp')"><div class="gallery-thumb-placeholder">24</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="24" style="background-image:url('images/urban/P1300909.webp')"><div class="gallery-thumb-placeholder">25</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="25" style="background-image:url('images/urban/WHC00003.webp')"><div class="gallery-thumb-placeholder">26</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="26" style="background-image:url('images/urban/WHC00013.webp')"><div class="gallery-thumb-placeholder">27</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="27" style="background-image:url('images/urban/WHC00014.webp')"><div class="gallery-thumb-placeholder">28</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="28" style="background-image:url('images/urban/WHC00024.webp')"><div class="gallery-thumb-placeholder">29</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="29" style="background-image:url('images/urban/WHC00034.webp')"><div class="gallery-thumb-placeholder">30</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="30" style="background-image:url('images/urban/WHC00043.webp')"><div class="gallery-thumb-placeholder">31</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="31" style="background-image:url('images/urban/WHC00051.webp')"><div class="gallery-thumb-placeholder">32</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="32" style="background-image:url('images/urban/WHC00052.webp')"><div class="gallery-thumb-placeholder">33</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="33" style="background-image:url('images/urban/WHC00057.webp')"><div class="gallery-thumb-placeholder">34</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="34" style="background-image:url('images/urban/WHC00060.webp')"><div class="gallery-thumb-placeholder">35</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="35" style="background-image:url('images/urban/WHC00065.webp')"><div class="gallery-thumb-placeholder">36</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="36" style="background-image:url('images/urban/WHC00071.webp')"><div class="gallery-thumb-placeholder">37</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="37" style="background-image:url('images/urban/WHC00105_1.webp')"><div class="gallery-thumb-placeholder">38</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="38" style="background-image:url('images/urban/WHC00126.webp')"><div class="gallery-thumb-placeholder">39</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="39" style="background-image:url('images/urban/WHC00136.webp')"><div class="gallery-thumb-placeholder">40</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00158.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00196.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00304.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00305-Enhanced-NR_1.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00316.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00408.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+              <div class="gallery-thumb" data-gallery="4" data-index="40" style="background-image:url('images/urban/WHC00727.webp')"><div class="gallery-thumb-placeholder">41</div></div>
+            </div>
+            <div class="gallery-main"><div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
 <div id="contact" class="section">
   <div class="contact-full">
     <div class="contact-centered fade-up">
@@ -255,10 +575,10 @@
     <a href="https://vimeo.com/willcahill" target="_blank">Vimeo</a>
     <a href="https://linkedin.com/in/will-cahill/" target="_blank">LinkedIn</a>
     <a href="https://instagram.com/willcahill" target="_blank">Instagram</a>
-    <a href="/cdn-cgi/l/email-protection#52253b3e3e31333a3b3e3e6b6b12353f333b3e7c313d3f">Email</a>
+    <a href="mailto:willcahill99@gmail.com">Email</a>
   </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   var menuToggle = document.getElementById('menuToggle');
   var iconNavItems = document.getElementById('iconNavItems');
   var isNavOpen = false;
@@ -294,6 +614,7 @@
       thumb.addEventListener('click', function() {
         thumbs.forEach(function(t) { t.classList.remove('active'); });
         thumb.classList.add('active');
+        var idx = thumb.getAttribute('data-index');
         var bgImage = window.getComputedStyle(thumb).backgroundImage;
         if (bgImage && bgImage !== 'none') {
           mainArea.style.backgroundImage = bgImage;
@@ -303,7 +624,7 @@
           mainArea.innerHTML = '';
         } else {
           mainArea.style.backgroundImage = 'none';
-          mainArea.innerHTML = '<div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Select a photo</div>';
+          mainArea.innerHTML = '<div class="gallery-main-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Photo ' + (parseInt(idx) + 1) + '</div>';
         }
       });
     });
