@@ -31,6 +31,10 @@
    20. Responsive — 768px
    ============================================================= */
 
+/* Page load fade-in */
+body { opacity: 0; transition: opacity 0.6s ease; }
+body.loaded { opacity: 1; }
+
 
 /* ---------------------------------------------------------
    1. CSS Custom Properties (Design Tokens)
@@ -328,7 +332,7 @@ body::after {
   height: 28px;
   aspect-ratio: 1;
   flex-shrink: 0;
-  background: var(--chrome);
+  background: var(--slate-blue);
   border-radius: 2px;
   cursor: pointer;
   border: none;
@@ -338,7 +342,7 @@ body::after {
 }
 .gallery-thumb:hover { background: var(--sand-light); }
 .gallery-thumb.active { background: var(--sand); }
- 
+
 /* Hide the number labels inside squares */
 .gallery-thumb-placeholder { display: none; }
  
@@ -363,21 +367,16 @@ body::after {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background: rgba(15,14,13,0.45);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 2px;
-  width: 36px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0.5rem;
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease;
 }
-.gallery-arrow:hover { background: rgba(15,14,13,0.75); border-color: var(--sky-blue); }
-.gallery-arrow svg { width: 16px; height: 16px; stroke: var(--cream); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.gallery-arrow-prev { left: 0.75rem; }
-.gallery-arrow-next { right: 0.75rem; }
+.gallery-arrow:hover { transform: translateY(-50%) scale(1.3); }
+.gallery-arrow svg { width: 28px; height: 28px; stroke: var(--charcoal); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.gallery-arrow-prev { left: 0.5rem; }
+.gallery-arrow-next { right: 0.5rem; }
  
 /* Responsive */
 @media (max-width: 1024px) {
