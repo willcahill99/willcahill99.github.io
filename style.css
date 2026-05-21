@@ -301,6 +301,7 @@ body::after {
 /* ---------------------------------------------------------
    15. Photography Galleries
    --------------------------------------------------------- */
+.gallery-viewer { flex-direction: row-reverse; }
 .gallery-segment { margin-bottom: 6rem; }
 .gallery-segment:last-child { margin-bottom: 0; }
 .gallery-segment-label { font-family: 'Biro Script', cursive; font-size: 2rem; font-weight: 400; color: var(--charcoal); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(59,84,104,0.15); }
