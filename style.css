@@ -310,7 +310,7 @@ body::after {
 .gallery-segment-header { display: flex; align-items: center; justify-content: flex-end; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(59,84,104,0.15); }
 .gallery-segment-label { font-family: 'Biro Script', cursive; font-size: 2rem; font-weight: 400; color: var(--charcoal); white-space: nowrap; flex-shrink: 0; }
 
-.gallery-thumbs { flex: 1; overflow-x: auto; overflow-y: hidden; display: flex; flex-direction: row; justify-content: flex-end; gap: 6px; height: 28px; scrollbar-width: none; }
+.gallery-thumbs { flex: 1; overflow-x: auto; overflow-y: hidden; display: flex; flex-direction: row; justify-content: flex-start; gap: 6px; height: 28px; scrollbar-width: none; }
 .gallery-thumbs::-webkit-scrollbar { display: none; }
 
 .gallery-thumb { width: 28px; height: 28px; aspect-ratio: 1; flex-shrink: 0; background: var(--slate-blue); border-radius: 2px; cursor: pointer; border: none; transition: background 0.25s ease; }
@@ -388,7 +388,7 @@ footer a:hover { color: var(--sky-blue); }
   .hero { padding: 4rem 1.5rem 3rem; }
   .hero-name { white-space: normal; }
   .hero-video-row { padding: 0; }
-  #about::before { background: rgba(15,14,13,0.6); }
+  #about { background-image: none; background-color: var(--dark); }
   .about-layout { justify-content: stretch; }
   .about-content-right { max-width: 100%; }
   .skills-edu-row { flex-direction: column; }
@@ -396,6 +396,8 @@ footer a:hover { color: var(--sky-blue); }
   .about-skills-full { padding: 0 1.5rem 2rem; }
   #about .section-inner { padding-left: 0; padding-right: 0; }
   .project-grid-2col { grid-template-columns: 1fr; }
+  .project-grid-2col::before,
+  .project-grid-2col::after { display: none; }
   .gallery-segment-header { flex-wrap: wrap; }
   .gallery-segment-label { order: 1; white-space: normal; }
   .gallery-thumbs { order: 2; width: 100%; justify-content: flex-start; }

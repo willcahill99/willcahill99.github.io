@@ -441,6 +441,27 @@ history.scrollRestoration = 'manual';
   }, { threshold: 0.3 });
   sections.forEach(function(s) { hashObserver.observe(s); });
 
+// ── Video thumbnails ──────────────────────────────────────
+document.querySelectorAll('.project-video[data-video-id]').forEach(function(card) {
+  var platform = card.getAttribute('data-platform');
+  var id = card.getAttribute('data-video-id');
+
+  function applyThumb(url) {
+    card.style.backgroundImage = "url('" + url + "')";
+    card.style.backgroundSize = 'cover';
+    card.style.backgroundPosition = 'center';
+  }
+
+  if (platform === 'youtube') {
+    applyThumb('https://img.youtube.com/vi/' + id + '/maxresdefault.jpg');
+  } else if (platform === 'vimeo') {
+    fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/' + id)
+      .then(function(res) { return res.json(); })
+      .then(function(data) { applyThumb(data.thumbnail_url); })
+      .catch(function() {});
+  }
+});
+
 // ── Video embeds ─────────────────────────────────────────
 document.querySelectorAll('.project-video').forEach(function(card) {
   card.addEventListener('click', function() {
