@@ -261,7 +261,8 @@ body::after {
 .project-card::after { display: none; }
 
 /* Centered shadow behind the grid */
-.project-grid-2col::before {
+#work .section-inner { position: relative; overflow: visible; }
+#work .section-inner::before {
   content: '';
   position: absolute;
   top: 0; bottom: 0;
@@ -280,7 +281,7 @@ body::after {
     linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 5%, black 95%, rgba(0,0,0,0.25) 100%);
   mask-composite: intersect;
 }
-
+.project-grid-2col::before { display: none; }
 .project-grid-2col::after { display: none; }
 .project-card > * { position: relative; z-index: 1; }
 
