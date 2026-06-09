@@ -184,7 +184,7 @@ body::after {
 /* ---------------------------------------------------------
    9. Reel Frame (Demo Reel + Project Cards share these)
    --------------------------------------------------------- */
-.reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); opacity: 0.45; transition: opacity 0.4s ease; }
+.reel-frame { background: rgba(0,0,0,0.6); border-radius: 4px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(90,125,149,0.2); opacity: 0.7; transition: opacity 0.4s ease; }
 .reel-frame:hover, .reel-frame.playing { opacity: 1; }
 .reel-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
 .reel-play { width: 72px; height: 72px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; transition: all 0.35s ease; }
@@ -245,7 +245,7 @@ body::after {
 .work-intro { font-size: 1.02rem; line-height: 1.75; color: var(--mid-gray); margin-bottom: 4rem; }
 .project-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 .project-card { position: relative; }
-.project-video { aspect-ratio: 16/9; background: var(--dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 1.2rem; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease; opacity: 0.45; }
+.project-video { aspect-ratio: 16/9; background: var(--dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 1.2rem; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease; opacity: 0.7; }
 .project-card:hover .project-video { transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,0.2); opacity: 1; }
 .project-video.playing { opacity: 1; }
 .project-video::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,0.015) 1px,rgba(255,255,255,0.015) 2px); z-index: 1; pointer-events: none; }
@@ -254,10 +254,10 @@ body::after {
 .project-video .reel-play svg { width: 18px; height: 18px; }
 .project-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.2rem; }
 .project-type { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel-blue); }
-.project-year { font-family: var(--font-mono); font-size: 0.58rem; color: var(--steel-blue); flex-shrink: 0; }
-.project-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--charcoal); }
-.project-roles { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; }
-.project-desc { font-size: 0.88rem; line-height: 1.65; color: var(--charcoal); }
+.project-year { font-family: var(--font-mono); font-size: 0.65rem; color: var(--steel-blue); flex-shrink: 0; }
+.project-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; color: var(--charcoal); }
+.project-roles { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-blue); margin-bottom: 0.3rem; }
+.project-desc { font-size: 1rem; line-height: 1.65; color: var(--charcoal); }
 .project-card::after { display: none; }
 
 /* Centered shadow behind the grid */
@@ -273,13 +273,14 @@ body::after {
   background: rgba(255,255,255,0.85);
   -webkit-mask-image:
     linear-gradient(to bottom, transparent 0%, black 8%, black 100%),
-    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 12%, black 88%, rgba(0,0,0,0.25) 100%);
   -webkit-mask-composite: destination-in;
   mask-image:
     linear-gradient(to bottom, transparent 0%, black 8%, black 100%),
-    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 12%, black 88%, rgba(0,0,0,0.25) 100%);
   mask-composite: intersect;
 }
+
 .project-grid-2col::after { display: none; }
 .project-card > * { position: relative; z-index: 1; }
 
