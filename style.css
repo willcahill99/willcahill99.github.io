@@ -338,7 +338,8 @@ body::after {
 #contact { background-image: url('images/backgrounds/ContactPrepV2.png'); background-color: transparent; background-size: 100% auto; background-position: center top; background-repeat: no-repeat; min-height: calc(2000 / 1410 * 100vw); z-index: 2; position: relative; margin-top: calc(-95 / 2000 * 100vw); }
 .contact-full { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10rem 3rem; }
 .contact-centered { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 500px; width: 100%; }
-.contact-headline { font-family: 'Biro Script', cursive; font-size: clamp(4rem,8vw,6.44rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap; }
+.contact-headline { font-family: 'Velocette', cursive; font-size: clamp(3rem,6vw,4.8rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.5rem; white-space: nowrap; }
+
 .contact-headline .line-blue   { color: #ffffff; display: block; }
 .contact-headline .line-spacer { display: block; height: 8em; }
 .contact-headline .line-spacer:last-child { height: 4em; }
