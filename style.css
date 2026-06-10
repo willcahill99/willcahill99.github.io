@@ -343,7 +343,7 @@ body::after {
 .contact-headline .line-blue   { color: #ffffff; display: block; }
 .contact-headline .line-spacer { display: block; height: 8em; }
 .contact-headline .line-spacer:last-child { height: 4em; }
-.contact-headline .line-sand   { font-family: 'Biro Script', cursive; color: var(--sand); display: block; font-style: normal; }
+.contact-headline .line-sand   { font-family: 'Velocette', cursive; color: var(--sand); display: block; font-style: normal; }
 .contact-links-center { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 2.5rem; }
 .contact-link { font-family: var(--font-mono); font-size: 1.1rem; letter-spacing: 0.08em; color: var(--charcoal); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); transition: all 0.3s; }
 .contact-link:hover { color: var(--steel-blue); }
