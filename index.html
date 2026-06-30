@@ -383,22 +383,28 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 
-  // ── Page reveal ──────────────────────────────────────────
-if (!window.location.hash) {
-  history.replaceState(null, '', '#lead');
-}
-window.addEventListener('load', function() {
-  var target = document.querySelector(window.location.hash || '#lead');
-  if (target) {
-    target.scrollIntoView();
+// ── Page reveal ──────────────────────────────────────────
+  // Don't let the browser restore your previous scroll position on reload.
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
   }
-  document.body.classList.add('loaded');
-});
-  setTimeout(function() {
-    document.documentElement.style.visibility = '';
-    document.body.classList.add('loaded');
-  }, 5000);
 
+  // Reveal the page at the very top on EVERY load — ignoring whatever
+  // hash got written into the URL the last time you scrolled.
+  function revealAtTop() {
+    if (document.body.classList.contains('loaded')) return; // run once
+    var html = document.documentElement;
+    html.style.scrollBehavior = 'auto';       // turn off smooth-scroll for this one jump
+    history.replaceState(null, '', '#lead');  // reset the URL to the lead section
+    window.scrollTo(0, 0);                     // snap to the top, instantly
+    html.style.scrollBehavior = '';           // restore smooth scrolling for menu clicks
+    html.style.visibility = '';               // now reveal the page
+    document.body.classList.add('loaded');
+  }
+
+  window.addEventListener('load', revealAtTop);
+  // Fallback in case a slow video/embed delays the load event.
+  setTimeout(revealAtTop, 3000);
   // ── Nav menu ─────────────────────────────────────────────
   var menuToggle = document.getElementById('menuToggle');
   var iconNavItems = document.getElementById('iconNavItems');
