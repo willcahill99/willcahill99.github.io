@@ -178,7 +178,7 @@ body::after {
 .hero-name .char-il     { font-family: 'Scruf',    cursive; font-size: 0.5em; }
 .hero-name .char-l2     { font-family: 'Inkfree',  cursive; font-size: 0.5em; }
 .hero-name .char-cahill { font-family: 'Velocette', cursive; font-size: 1.25em; padding-left: 0.15em; display: inline-block; position: relative; }
-.hero-tagline { font-family: 'Biro Script', cursive; font-size: 0.145em; font-weight: 300; line-height: 1.4; color: rgba(255,255,255,0.55); white-space: nowrap; font-style: normal; position: absolute; bottom: -1em; left: 2em; }
+.hero-tagline { font-family: 'Biro Script', cursive; font-size: 0.145em; font-weight: 300; line-height: 1.4; color: rgba(255,255,255,0.55); white-space: nowrap; font-style: normal; position: absolute; bottom: -1em; left: 15%; }
 
 
 /* ---------------------------------------------------------
