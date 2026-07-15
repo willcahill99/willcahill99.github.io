@@ -380,7 +380,7 @@ footer a:hover { color: var(--sky-blue); }
 }
 
 /* Modal */
-.contact-email-btn { background: none; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 1.08rem; }
+.contact-email-btn { background: none; border: none; border-bottom: 1px solid rgba(0,0,0,0.1); cursor: pointer; font-family: var(--font-mono); font-size: 1.08rem; }
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 .modal-overlay.open { opacity: 1; pointer-events: auto; }
 .modal-box { background: var(--dark); border: 1px solid rgba(90,125,149,0.3); border-radius: 6px; padding: 2.5rem; width: 100%; max-width: 480px; position: relative; }
