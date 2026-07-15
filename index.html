@@ -373,6 +373,9 @@
         <span class="line-spacer"></span>
       </h2>
       <div class="contact-links-center">
+        <button class="contact-link contact-email-btn" onclick="document.getElementById('emailModal').classList.add('open')">
+  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
+</button>
         <a href="https://instagram.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
         <a href="https://linkedin.com/in/will-cahill/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
         <a href="https://vimeo.com/willcahill" target="_blank" class="contact-link"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><polygon points="10 8 16 12 10 16 10 8" fill="none" stroke="currentColor"/></svg>Vimeo</a>
@@ -584,5 +587,17 @@ if (heroReel) {
   });
 }
 </script>
+<div id="emailModal" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('emailModal').classList.remove('open')">&times;</button>
+    <h3 class="modal-title">Get in Touch</h3>
+    <form action="https://formspree.io/f/xaqrqoor" method="POST" class="modal-form">
+      <label>Name<input type="text" name="name" required></label>
+      <label>Your Email<input type="email" name="email" required></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button type="submit" class="modal-submit">Send</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
