@@ -427,9 +427,9 @@ footer a:hover { color: var(--sky-blue); }
   .gallery-thumbs { order: 2; width: 100%; justify-content: flex-start; }
   .gallery-viewer { height: auto; }
   .gallery-main { min-height: 280px; }
-  .contact-headline .line-spacer { height: 3em; }
+  .contact-headline .line-spacer { height: 1em; }
   .contact-headline .line-spacer:last-child { height: 1.5em; }
-  .contact-full { padding: 4rem 1.5rem; min-height: unset; }
+  .contact-full { padding: 2rem 1.5rem; min-height: unset; }
   .contact-headline { white-space: normal; }
   .contact-link { color: var(--sand); background: var(--dark); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 0.75rem 1rem; }
   .contact-email-btn { color: var(--sand); background: var(--dark); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; width: 100%; }
