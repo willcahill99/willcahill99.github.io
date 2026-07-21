@@ -421,7 +421,7 @@ footer a:hover { color: var(--sky-blue); }
   .project-grid-2col::after { display: none; }
   #experience .sticky-content { margin-top: -70vw; }
   #photos .sticky-content { margin-top: -70vw; }
-  #work .sticky-content { margin-top: -70vw; }
+  #work .sticky-content { margin-top: -150vw; }
   .gallery-segment-header { flex-wrap: wrap; }
   .gallery-segment-label { order: 1; white-space: normal; }
   .gallery-thumbs { order: 2; width: 100%; justify-content: flex-start; }
