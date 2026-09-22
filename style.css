@@ -142,6 +142,7 @@ body::after {
 .icon-nav-items.open .icon-nav-link:nth-child(3) { transition-delay: 0.18s; }
 .icon-nav-items.open .icon-nav-link:nth-child(4) { transition-delay: 0.24s; }
 .icon-nav-items.open .icon-nav-link:nth-child(5) { transition-delay: 0.30s; }
+.icon-nav-items.open .icon-nav-link:nth-child(6) { transition-delay: 0.36s; }
 
 /* Stagger out */
 .icon-nav-items:not(.open) .icon-nav-link:nth-child(5) { transition-delay: 0.04s; }
