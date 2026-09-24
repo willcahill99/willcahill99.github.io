@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Set List — Photography & Video Rates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+
+    --bg:#FFFFFF;
+    --text:#1C1917;
+    --muted:#6B635A;
+    --accent-a:#5A7D95;
+    --accent-b:#3B5468;
+    --gold:#D4B87A;
+    --line:rgba(28,25,23,0.12);
+    --leader:rgba(28,25,23,0.24);
+
+    --font-display:'DM Sans','Helvetica Neue',sans-serif;
+    --font-body:'DM Sans','Helvetica Neue',sans-serif;
+    --font-mono:'Space Mono','Courier New',monospace;
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  *,*::before,*::after{box-sizing:inherit;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- back button ---- */
+  .back-nav-btn{
+    position:fixed;
+    top:0;left:0;
+    z-index:1001;
+    padding:1.25rem 1.75rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .back-nav-btn svg{
+    width:28px;height:28px;
+    stroke:var(--text);
+    fill:none;
+    stroke-width:2.5;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    transition:transform 0.25s ease;
+  }
+  .back-nav-btn:hover svg{
+    transform:scale(1.2);
+  }
+
+  .page{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 1.5rem 4rem;
+  }
+
+  /* ---- hero ---- */
+  .hero{
+    padding:4.5rem 0 0;
+    text-align:center;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:clamp(2.4rem,9vw,3.7rem);
+    line-height:1.1;
+    margin:0;
+    color:var(--text);
+  }
+  .accent-bar{
+    display:block;
+    width:52px;height:3px;
+    background:var(--gold);
+    border-radius:2px;
+    margin:1.15rem auto 1.1rem;
+  }
+  .hero p{
+    margin:0;
+    color:var(--muted);
+    font-size:clamp(0.92rem,2.4vw,1.02rem);
+    font-weight:400;
+  }
+
+  /* ---- sections ---- */
+  .menu-section{
+    padding-top:2.6rem;
+    margin-top:2.6rem;
+    border-top:1px solid var(--line);
+  }
+  .menu-section:first-of-type{
+    margin-top:3rem;
+  }
+  .menu-section.track-a{ --track:var(--accent-a); }
+  .menu-section.track-b{ --track:var(--accent-b); }
+
+  .section-label{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--track);
+    margin-bottom:0.7rem;
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+  }
+  .section-label::before{
+    content:'';
+    width:24px;height:1.5px;
+    background:var(--track);
+  }
+  .menu-section h2{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:clamp(1.5rem,4vw,1.9rem);
+    line-height:1.15;
+    margin:0 0 0.3rem;
+    color:var(--text);
+  }
+  .section-note{
+    margin:0 0 1.4rem;
+    color:var(--muted);
+    font-size:0.9rem;
+  }
+
+  .menu-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .menu-item{
+    padding:0.85rem 0;
+  }
+  .menu-item + .menu-item{
+    border-top:1px solid var(--line);
+  }
+  .item-main{
+    display:flex;
+    align-items:baseline;
+    gap:0.6rem;
+  }
+  .item-name{
+    font-family:var(--font-body);
+    font-weight:500;
+    font-size:1rem;
+    white-space:nowrap;
+  }
+  .leader{
+    flex:1;
+    border-bottom:2px dotted var(--leader);
+    margin-bottom:5px;
+    min-width:1rem;
+  }
+  .item-price{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.12rem;
+    color:var(--track);
+    white-space:nowrap;
+  }
+  .item-price .unit{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:0.82rem;
+    color:var(--muted);
+    margin-left:0.15rem;
+  }
+  .item-desc{
+    margin:0.3rem 0 0;
+    color:var(--muted);
+    font-size:0.86rem;
+    line-height:1.4;
+  }
+
+  /* ---- footer ---- */
+  .terms{
+    margin-top:3rem;
+    padding-top:1.6rem;
+    border-top:1px solid var(--line);
+  }
+  .terms p{
+    margin:0 0 0.5rem;
+    color:var(--muted);
+    font-size:0.82rem;
+    font-family:var(--font-mono);
+    line-height:1.6;
+  }
+  .terms p:last-child{margin-bottom:0;}
+
+  @media (max-width:420px){
+    .item-name{white-space:normal;}
+    .leader{display:none;}
+    .item-main{justify-content:space-between;}
+  }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back-nav-btn" aria-label="Back to willcahill.com">
+    <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"></polyline></svg>
+  </a>
+  <div class="page">
+    <header class="hero">
+      <h1>The Set List</h1>
+      <span class="accent-bar"></span>
+      <p>Video/photo rates &amp; packages</p>
+    </header>
+
+    <section class="menu-section track-a">
+      <p class="section-label">Hourly</p>
+      <h2>General rates</h2>
+      <p class="section-note">For custom bookings, billed hourly.</p>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Photography</span>
+            <span class="leader"></span>
+            <span class="item-price">$50<span class="unit">/hr</span></span>
+          </div>
+          <p class="item-desc">2-hour minimum</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Videography (single camera)</span>
+            <span class="leader"></span>
+            <span class="item-price">$80<span class="unit">/hr</span></span>
+          </div>
+          <p class="item-desc">2-hour minimum</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Photo + video combo</span>
+            <span class="leader"></span>
+            <span class="item-price">$100<span class="unit">/hr</span></span>
+          </div>
+          <p class="item-desc">2-hour minimum</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Editing only</span>
+            <span class="leader"></span>
+            <span class="item-price">$30<span class="unit">/hr</span></span>
+          </div>
+          <p class="item-desc">You supply the footage · 1-hour minimum</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section track-b">
+      <p class="section-label">Coverage</p>
+      <h2>Live sessions</h2>
+      <p class="section-note">On stage or in studio.</p>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Photo coverage</span>
+            <span class="leader"></span>
+            <span class="item-price">$120</span>
+          </div>
+          <p class="item-desc">One set, 20–30 edited photos, plus raw files included</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Video, single camera</span>
+            <span class="leader"></span>
+            <span class="item-price">$250</span>
+          </div>
+          <p class="item-desc">Full set filmed, one edited highlight video</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Video, multi-camera</span>
+            <span class="leader"></span>
+            <span class="item-price">$450</span>
+          </div>
+          <p class="item-desc">Two synced camera angles, edited together</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Photo + video combo</span>
+            <span class="leader"></span>
+            <span class="item-price">$400</span>
+          </div>
+          <p class="item-desc">Both photo and video coverage of your set</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Live session video</span>
+            <span class="leader"></span>
+            <span class="item-price">$350</span>
+          </div>
+          <p class="item-desc">One song, multi-take, audio-synced and edited</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Half-day session</span>
+            <span class="leader"></span>
+            <span class="item-price">$600</span>
+          </div>
+          <p class="item-desc">Up to 4 hours, photo and video across multiple songs</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section track-a">
+      <p class="section-label">Short-form</p>
+      <h2>Social content</h2>
+      <p class="section-note">Short-form video for Instagram, TikTok, and YouTube Shorts.</p>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Content day, half day</span>
+            <span class="leader"></span>
+            <span class="item-price">$300</span>
+          </div>
+          <p class="item-desc">About 3 hours, 6–10 edited clips</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Content day, full day</span>
+            <span class="leader"></span>
+            <span class="item-price">$600</span>
+          </div>
+          <p class="item-desc">About 6 hours, 12–15 edited clips</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Custom promo video</span>
+            <span class="leader"></span>
+            <span class="item-price">$100–$200</span>
+          </div>
+          <p class="item-desc">One scripted video, 30–60 seconds, filmed and edited</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Editing only</span>
+            <span class="leader"></span>
+            <span class="item-price">$45<span class="unit">/clip</span></span>
+          </div>
+          <p class="item-desc">You supply the footage · 1–2 rounds of revisions</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="menu-section track-b">
+      <p class="section-label">Production</p>
+      <h2>Music videos</h2>
+      <p class="section-note">Filmed and edited, full concept to delivery.</p>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Basic</span>
+            <span class="leader"></span>
+            <span class="item-price">$800</span>
+          </div>
+          <p class="item-desc">Single location, one-day shoot</p>
+        </li>
+        <li class="menu-item">
+          <div class="item-main">
+            <span class="item-name">Mid-tier</span>
+            <span class="leader"></span>
+            <span class="item-price">$1,500</span>
+          </div>
+          <p class="item-desc">Two locations, or a light narrative concept</p>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="terms">
+      <p>Hourly bookings have a 2-hour minimum.</p>
+      <p>A 30% deposit reserves your date.</p>
+      <p>Ask about bundle pricing when booking more than one service together.</p>
+    </footer>
+  </div>
+</body>
+</html>
